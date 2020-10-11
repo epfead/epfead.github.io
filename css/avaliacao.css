@@ -1,0 +1,109 @@
+.container{
+	min-height: 100%;
+}
+
+#formulario{
+	padding: 30px;
+	border: 1px solid #08244E;
+	border-radius: 5px;
+	box-shadow: 0px 0px 3px 3px #CCC;
+	background-color: #FFF;
+}
+
+#idevento{
+	margin-bottom: 15px;
+}
+
+#dados-aviso{
+	text-align: center;
+	align-items: center;
+	color: rgba(5, 56, 112, 1);
+	margin-bottom: 30px;
+}
+
+#dados-local{
+	margin-bottom: 30px;
+}
+
+
+
+
+
+
+
+#resultado{
+	margin-top: 20px;
+	padding: 40px;
+	border: 1px solid #08244E;
+	border-radius: 5px;
+	box-shadow: 0px 0px 3px 3px #CCC;
+	background-color: #FFF;
+}
+
+#titulo-pagina{
+	text-align: center;
+	margin-top: 0px;
+	margin-bottom: 40px;
+	color: rgba(5, 56, 112, 1);
+}
+
+#titulo{
+	margin-top: 30px;
+	text-align: center;
+	color: rgba(5, 56, 112, 1);
+}
+
+#titulo-dados{
+	margin-top: 30px;
+	color: rgba(5, 56, 112, 1);
+}
+
+#subtitulo{
+	text-align: center;
+	margin-top: 0px;
+	margin-bottom: 25px;
+	color: rgba(5, 56, 112, 1);
+}
+
+.banner{
+	height: 90px;
+	width: 100%;
+	text-align: center;
+	margin-bottom: 25px;
+}
+
+.imagem{
+	height: 90px;
+	max-width: 120px;
+}
+
+.linha-azul{
+	border: 1px dashed #08244E;
+	height: 1px;
+	width: 100%;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+#dados-acao{
+	margin-bottom: 30px;
+}
+
+td, th, tr{
+	text-align: center;
+}
+
+#opcao-linha{
+	width: 50%;
+	text-align: left;
+}
+
+.botao{
+	margin-left: 20%;
+	margin-right: 20%;
+	margin-top: 30px;
+	width: 60%;
+	height: auto;
+	text-align: center;
+}
+

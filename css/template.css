@@ -1,0 +1,114 @@
+/* Configuração de fonte e página */
+@font-face {
+     font-family: Roboto;
+     src: url('../fonts/Roboto-Regular.ttf');
+}
+
+html{
+	height: 100%;
+	width: 100%;
+	font-family: Roboto;
+}
+
+body {
+	background: url('../img/site/image_gallery-01.png');
+	background-attachment: fixed;
+	background-size: cover;
+	height: 100%;
+	width: 100%;
+}
+
+
+
+/* Estilo da Barra de Navegação (navBar) */
+
+.navbar-light{
+	background-color: rgba(255, 255, 255, 0.9);
+}
+
+.texto-navbar{
+	margin-left: 20px;
+	font-size: 1.2em;
+	color: rgba(5, 56, 112, 1);
+}
+
+.navico2{
+	margin-left: 5px;
+}
+
+.nav-link{
+	color: rgba(5, 56, 112, 1);
+}
+
+.link-menu{
+	color: rgba(5, 56, 112, 1);
+	border-bottom: 1px solid rgba(255, 215, 0, 0);
+}
+
+.link-menu:hover{
+	color: rgba(5, 56, 112, 1);
+	background-color: rgba(255, 215, 0, 0.3);
+	border-bottom: 1px solid rgba(255, 215, 0, 1);
+}
+
+#logo-prefeitura{
+	margin-left: 16px;
+}
+
+
+
+/* Ícones */
+
+.oi{
+	margin: 0px 5px 3px 0px;
+	color: blue;
+}
+
+.oi-white{
+	margin: 0px 5px 3px 0px;
+	color: rgba(255, 255, 255, 1);
+}
+
+
+
+/* Estilo do rodapé (pageFooter) */
+
+#rodape-pagina{
+	margin: 100px 0px 0px 0px;
+	background-color: rgba(255, 255, 255, 0.9);
+	height: auto;
+	display: block;
+	text-align: center;
+	border-top: 3px solid rgba(255, 215, 0, 1);
+}
+
+#texto-rodape-pagina-01{
+	display: block;
+	height: auto;
+	font-size: 1em;
+	color: rgba(5, 56, 112, 1);
+	margin: 10px 0px -10px 0px;
+}
+
+#texto-rodape-pagina-02{
+	display: block;
+	height: auto;
+	font-size: 0.8em;
+	font-weight: 400;
+	color: rgba(5, 56, 112, 1);
+	margin: -10px 0px 10px 0px;
+}
+
+#texto-rodape-pagina-03{
+	display: block;
+	height: auto;
+	font-size: 0.8em;
+	font-weight: 400;
+	color: rgba(5, 56, 112, 1);
+	margin: -20px 0px 10px 0px;
+}
+
+.oi-rodape{
+	margin-left: 30px;
+	font-size: 1.2em;
+}

@@ -1,0 +1,116 @@
+.container{
+	min-height: 100%;
+}
+
+#titulo-pagina{
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	color: rgba(5, 56, 112, 1);
+	/*color: #08244E;*/
+}
+
+#titulo{
+	text-align: center;
+	margin-top: 0px;
+	margin-bottom: 10px;
+	color: rgba(5, 56, 112, 1);
+}
+
+#subtitulo{
+	text-align: center;
+	margin-top: 0px;
+	margin-bottom: 25px;
+	color: rgba(5, 56, 112, 1);
+}
+
+#titulo-dados{
+	color: rgba(5, 56, 112, 1);
+}
+
+.banner{
+	height: 90px;
+	width: 100%;
+	text-align: center;
+	margin-bottom: 25px;
+}
+
+.imagem{
+	height: 90px;
+	max-width: 120px;
+}
+
+#formulario{
+	margin-top: 20px;
+	padding: 30px;
+	border: 1px solid #08244E;
+	border-radius: 5px;
+	box-shadow: 0px 0px 3px 3px #CCC;
+	background-color: #FFF;
+}
+
+#dados{
+	margin-top: 20px;
+}
+
+#resultado{
+	padding: 40px;
+	border: 1px solid #08244E;
+	border-radius: 5px;
+	box-shadow: 0px 0px 3px 3px #CCC;
+	background-color: #FFF;
+}
+
+#idevento{
+	margin-bottom: 15px;
+}
+
+.botao{
+	width: 100%;
+	height: auto;
+	text-align: center;
+}
+
+.botao-localizar{
+	width: 70%;
+}
+
+#dados-aviso{
+	text-align: center;
+	align-items: center;
+	color: rgba(5, 56, 112, 1);
+	margin-bottom: 30px;
+}
+
+#dados-servidor{
+	margin-bottom: 30px;
+}
+
+#dados-local{
+	margin-bottom: 30px;
+}
+
+#avaliado{
+	color: #FFF;
+	border: 1px solid green;
+	width: 200px;
+	background-color: green;
+	height: 30px;
+	border-radius: 4px;
+	padding: 5px;
+}
+
+#nao-liberado{
+	color: #FFF;
+	border: 1px solid red;
+	width: 200px;
+	background-color: red;
+	height: 30px;
+	border-radius: 4px;
+	padding: 5px;
+}
+
+.botao-avaliar{
+	width: 200px;
+}
+

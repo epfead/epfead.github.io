@@ -1,0 +1,638 @@
+body{
+	overflow-x: hidden;
+	background-color: #EEE;
+}
+
+#sidebar-wrapper {
+	min-height: 100vh;
+	margin-left: -15rem;
+	-webkit-transition: margin .25s ease-out;
+	-moz-transition: margin .25s ease-out;
+	-o-transition: margin .25s ease-out;
+	transition: margin .25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+	padding: 0.875rem 1.25rem;
+	font-size: 1.2rem;
+	color: #FFFFFF;
+}
+
+#sidebar-wrapper .list-group {
+	width: 15rem;
+}
+
+#page-content-wrapper {
+	min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+	margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}
+
+
+
+
+
+
+
+#items-navbar{
+	width: auto;
+}
+
+#wrapper{
+	background-color: #EEE;
+	color: #001646;
+}
+
+.logo{
+	display: flex;
+	width: 100%;
+	height: 90px;
+	align-items: center;
+}
+
+.logo-prefeitura{
+	margin-left: 50px;
+	margin-right: 10px;
+}
+
+#titulo-navbar{
+	color: rgba(255, 255, 255, 1);
+	margin-left: 15px;
+}
+
+.navcontrol{
+	background-color: rgba(0, 0, 0, 0.1);
+	color: #FFF;
+	border: 1px solid rgba(255, 255, 255, 1);
+	margin-right: 10px;
+	width: auto;
+}
+
+.navcontrol:hover{
+	color: #FFF;
+	background-color: rgba(255, 215, 0, 0.1);
+	border: 1px solid rgba(255, 215, 0, 1);
+	border-radius: 5px;
+}
+
+#tipo{
+	background-color: rgba(0, 0, 0, 0);
+	color: #FFFFFF;
+	border: 1px solid rgba(0, 0, 0, 0);
+	margin-right: 10px;
+	width: auto;
+}
+
+#tipo:hover{
+	color: #FFFFFF;
+	background-color: rgba(255, 215, 0, 0.1);
+	border: 1px solid rgba(255, 215, 0, 1);
+	border-radius: 5px;
+}
+
+.option-dark{
+	background-color: rgba(0, 0, 0, 0.7);
+	color: #FFF;
+}
+
+.option-light{
+	background-color: rgba(255, 215, 0, 0.1);
+	color: #000;
+}
+
+#link-menu{
+	color: #FFFFFF;
+	border: 1px solid rgba(255, 215, 0, 0);
+	border-radius: 5px;
+	margin-right: 10px;
+}
+
+#link-menu:hover{
+	color: #FFFFFF;
+	background-color: rgba(255, 215, 0, 0.1);
+	border: 1px solid rgba(255, 215, 0, 1);
+	border-radius: 5px;
+}
+
+.linha{
+	height: 2px;
+	background-color: rgba(255, 215, 0, 1);
+	width: 100%;
+	margin-top: 25px;
+	margin-bottom: 0px;
+}
+
+.linha-tracejada{
+	border-bottom: 1px dashed rgba(255, 215, 0, 1);
+	width: 100%;
+	margin-top: 25px;
+	margin-bottom: 0px;
+}
+
+#logo-evento-peq{
+	height: 90px;
+	width: 120px;
+	margin-bottom: 10px;
+}
+
+.info-regiao{
+	color: #FFF;
+	text-align: center;
+	width: 14.5rem;
+	height: auto;
+	margin: 3px;
+}
+
+#checkbox{
+	width: 100%;
+	height: auto;
+	border: 1px solid #000;
+	background-color: rgba(0, 0, 0, 0.7);
+	padding: 5px;
+	padding-left: 15px;
+	border-radius: 3px;
+}
+
+#texto-orientacao{
+	color: #FFF;
+}
+
+#div-matricula{
+	width: 450px;
+}
+
+
+
+
+/*========================================*/
+/* CSS do painel.php base                 */
+/*========================================*/
+
+/* Remove as margens da área que recebe os módulos*/
+#conteudo{
+	margin: 0px;
+	padding: 0px;
+	height: auto;
+}
+
+/* Seta para baixo dos botões do menu lateral */
+.oi-yellow{
+	color: rgba(255, 215, 0, 1);
+}
+
+/* Configuração dos botões do menu lateral */
+.botao{
+	border-top: 1px solid rgba(255, 215, 0, 1);
+	border-bottom: 1px solid rgba(255, 215, 0, 1);
+}
+
+/* Configuração dos botões do menu lateral - ícone */
+.icone-botao{
+	text-align: left;
+	width: 20px;
+}
+
+/* Configuração dos botões do menu lateral - texto */
+.texto-botao{
+	display: inline-block;
+	text-align: left;
+	width: 140px;
+}
+
+/* Configuração dos botões do menu lateral - seta */
+.seta-botao{
+	text-align: right;
+	width: 20px;
+}
+
+
+
+
+/*=====================================================================*/
+/* Área dos CSS's para configurar elementos comuns em todos os módulos */
+/*=====================================================================*/
+.width100{
+	width: 100%;
+}
+
+.zeromargin{
+	margin: 0px;
+}
+
+.zeropadding{
+	padding: 0px;
+}
+
+.container-requisicao{
+	height: auto;
+	background-color: #EEE;
+}
+
+/* Configuração do ícone de "aguardando" */
+#loading-local{
+	display: block;
+	text-align: center;
+	height: 100%;
+	width: 100%;
+}
+
+#loading-ico{
+	width: 10%;
+	margin-left: 45%;
+	margin-right: 45%;
+}
+
+.loading-ico-25{
+	width: 25%;
+}
+
+.loading-ico-50{
+	width: 50%;
+}
+
+/* Configuração do botão de informação */
+.x-info{
+	font-size: 0.7em;
+	height: 21px;
+	width: 21px;
+	cursor: pointer;
+	border: 1px solid red;
+	margin-left: 10px;
+	padding: 2px 5px 2px 5px;
+	color: red;
+	background-color: #FFF;
+	border-radius: 5px;
+}
+
+/* Configuração para tabelas e campos de tabelas */
+.tab-f-sm{
+	font-weight: 400;
+	font-size: small;
+}
+
+.tab-w-25{
+	width: 25px;
+}
+
+.tab-w-50{
+	width: 50px;
+}
+
+.tab-w-75{
+	width: 75px;
+}
+
+.tab-w-100{
+	width: 100px;
+}
+
+.tab-w-200{
+	width: 200px;
+}
+
+.tab-w-300{
+	width: 300px;
+}
+
+.tab-w-400{
+	width: 400px;
+}
+
+.tab-w-500{
+	width: 500px;
+}
+
+.tab-a-center{
+	text-align: center;
+}
+
+.tab-a-left{
+	text-align: left;
+}
+
+.tab-a-right{
+	text-align: right;
+}
+
+
+
+
+/*========================================*/
+/* Área dos CSS's específicos dos módulos */
+/*========================================*/
+
+/* res_pc_eventos_crud.php */
+/*-------------------------*/
+.row, .form-group, .form-control{
+	margin-bottom: -5px;
+}
+
+.form-check{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.modal-header, .modal-footer{
+	color: #FFF;
+	background-color: #000;
+}
+
+.modal-body{
+	background-color: #EEE;
+}
+
+.botoes-finalizar{
+	text-align: center;
+}
+
+.botao-cancelar, .botao-concluir{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.bio-yes{
+	margin: 0px;
+	padding: 5px;
+	color: green;
+	border: 1px solid rgba(0,0,0,0);
+}
+
+.bio-no{
+	margin: 0px;
+	padding: 5px;
+	color: red;
+	border: 1px solid rgba(0,0,0,0);
+}
+
+.bio-yes:hover{
+	color: green;
+	border: 1px solid green;
+}
+
+.bio-no:hover{
+	color: red;
+	border: 1px solid red;
+}
+
+.subtitulo-formulario{
+	border-bottom: 1px dashed rgba(255,215,0,1);
+	padding-bottom: 10px;
+}
+
+#listaregioesabrangencia{
+	margin-top: 10px;
+}
+
+.regiaoabrangencia{
+	border: 1px solid blue;
+	border-radius: 3px;
+	background-color: blue;
+	color: #FFF;
+	width: auto;
+	display: inline;
+	padding-left: 3px;
+	padding-right: 3px;
+	margin-right: 5px;
+}
+
+.xbotao{
+	cursor: pointer;
+	padding-left: 5px;
+	padding-right: 5px;
+	color: red;
+	background-color: #FFF;
+	border-radius: 15px;
+}
+
+.xbotao:hover{
+	cursor: pointer;
+	padding-left: 5px;
+	padding-right: 5px;
+	color: #FFF;
+	background-color: red;
+	border-radius: 15px;
+}
+
+.tablocal,.tabacao{
+	font-weight: 400;
+	font-size: small;
+}
+
+.tablocal-vagas{
+	width: 75px;
+	border: none;
+	text-align: center;
+}
+
+.tablocal-limitar{
+	width: 75px;
+	text-align: center;
+}
+
+.tablocal-remover{
+	width: 75px;
+	text-align: center;
+}
+
+.campo-erro{
+	background-color: rgba(255, 0, 0, 0.1);
+	border-color: red;
+}
+
+.box-personalizado-dark{
+	border: 1px solid rgba(0, 0, 0, 1);
+	border-radius: 5px;
+	background-color: rgba(0, 0, 0, 0.7);
+	color: rgba(255, 255, 255, 1);
+	padding: 5px 5px 5px 35px;
+}
+
+
+
+/* res_pc_pagina_em_branco.php */
+/*-----------------------------*/
+.container-branco{
+	margin: 0px;
+	padding: 20px;
+	background-color: #EEE;
+	height: 1080px;
+}
+
+
+
+/* res_pc_usuarios.php */
+/*-----------------------------*/
+.container-usuarios{
+	margin: 0px;
+	padding: 20px;
+	background-color: #EEE;
+	height: auto;
+}
+
+#container-tabela-usuarios{
+	margin: 0px;
+	padding: 0px 15px 50px 15px;
+	width: 100%;
+	display: block;
+}
+
+.container-tabela{
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+}
+
+.cel-ferramentas{
+	width: 120px;
+}
+
+.cel-ativo{
+	width: 50px;
+	text-align: center;
+}
+
+.ativo-yes{
+	color: green;
+}
+
+.ativo-no{
+	color: red;
+}
+
+.editar, .enviar, .deletar{
+	cursor: pointer;
+	margin: 0px;
+	padding: 5px;
+	color: #888;
+	border: 1px solid rgba(255,255,255,0);
+}
+
+.editar:hover{
+	color: orange;
+	border: 1px solid orange;
+}
+
+.enviar:hover{
+	color: blue;
+	border: 1px solid blue;
+}
+
+.deletar:hover{
+	color: red;
+	border: 1px solid red;
+}
+
+
+
+/* res_pc_ferramentas_permissoes.php */
+/*-----------------------------------*/
+.tabela-permissoes{
+	margin-top: 15px;
+	border: 2px solid #000;
+	box-shadow: 0px 0px 5px 2px;
+}
+
+.opcoes-permissoes{
+	margin: 15px 0px 0px 0px;
+	padding: 0px 0px 30px 0px;
+	border: 2px solid #000;
+	box-shadow: 0px 0px 5px 2px;
+}
+
+.cabecalho-opcoes{
+	background-color: #000;
+	color: #FFF;
+	height: 34px;
+	padding-left: 15px;
+}
+
+.item-permissao{
+	margin: 15px 0px 0px 15px;
+}
+
+.subitem-permissao{
+	margin: 5px 0px 0px 30px;
+}
+
+.subsubitem-permissao{
+	margin: 5px 0px 0px 45px;
+}
+
+.botao-mais{
+	width: 12px;
+}
+
+.button-table{
+	margin: 0px;
+	padding: 0px;
+	height: auto;
+	width: auto;
+	border: none;
+	background-color: rgba(255,255,255,0);
+}
+
+
+
+/* res_pc_relatorios_listafrequencia_lista.php */
+/*---------------------------------------------*/
+.titulo-celulalista{
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-weight: 700;
+	font-size: small;
+	color: #FFF;
+	text-align: left;
+}
+
+.celulalista{
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-weight: lighter;
+	font-size: small;
+}
+
+.celulalista-remover-insc,.celulalista-confirmado-insc{
+	text-align: center;
+	width: 70px;
+}
+
+.celulalista-matricula-insc{
+	text-align: left;
+	width: 100px;
+}
+
+.celulalista-tel-insc{
+	text-align: left;
+	width: 130px;
+}
+
+.input-celula{
+	background-color: transparent;
+	width: 100%;
+	border: 1px solid white;
+}
+
+.input-celula:hover{
+	background-color: white;
+	border: 1px solid red;
+}
+
+
+
+/* res_pc_eventos_inscricaointerna_inscricao.php */
+/*-----------------------------------------------*/

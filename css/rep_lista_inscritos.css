@@ -1,0 +1,222 @@
+@font-face {
+	font-family: sans-serif;
+}
+
+body {
+	font-family: sans-serif;
+}
+
+
+
+.container-logo{
+	display: inline;
+	float: left;
+	height: 110px;
+	width: 80px;
+	margin: 0px;
+}
+
+.imagem-logo{
+	height: 80px;
+	width: 80px;
+}
+
+.branco{
+	height: 30px;
+	width: 100%;
+}
+
+
+
+.container-numpagina-principal{
+	display: inline;
+	float: right;
+	text-align: right;
+	height: 110px;
+	width: 400px;
+}
+
+.container-numpagina-secundario{
+	display: block;
+	text-align: right;
+	height: 20px;
+	width: 100%;
+}
+
+
+
+.container-titulo{
+	display: inline;
+	float: left;
+	height: 110px;
+	width: 400px;
+	padding: 0px;
+	margin: 0px 0px 0px 20px;
+}
+
+.titulo{
+	border: 1px solid black;
+	height: 80px;
+	width: 400px;
+	padding: 5px;
+	margin: 0px;
+}
+
+
+
+.informacoes{
+	margin-top: 15px;
+	display: block;
+	height: auto;
+	width: 100%;
+}
+
+.linha-01{
+	color: black;
+}
+
+.linha-02{
+	padding-top: 10px;
+	color: black;
+}
+
+.espaco{
+	color: rgba(255,255,255,1);
+}
+
+
+
+table {
+	word-wrap: break-word;
+	table-layout: fixed;
+}
+
+th {
+	border-top: 1px solid gray;
+	border-bottom: 1px solid gray;
+	border-left: 1px solid gray;
+	padding: 3px;
+	background-color: #CCC;
+}
+
+tr {
+	height: 25px;
+}
+
+td {
+	height: 25px;
+	border-bottom: 1px solid gray;
+	border-left: 1px solid gray;
+	padding-left: 3px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+
+.titulo-celula-numero{
+	font-family: 'Ubuntu Mono', monospace;
+	letter-spacing: -0.07em;
+	font-size: small;
+
+	width: 30px;
+	text-align: center;
+}
+
+.celula-numero{
+	font-family: 'Ubuntu Mono', monospace;
+	letter-spacing: -0.07em;
+	font-size: small;
+
+	width: 30px;
+	text-align: center;
+}
+
+.titulo-celula-nome{
+	font-family: 'Ubuntu Mono', monospace;
+	letter-spacing: -0.07em;
+	font-size: small;
+
+	width: 300px;
+	text-align: center;
+}
+
+.celula-nome{
+	font-family: 'Ubuntu Mono', monospace;
+	letter-spacing: -0.07em;
+	font-size: xx-small;
+
+	width: 300px;
+	text-align: left;
+}
+
+.titulo-celula-matricula{
+	font-family: 'Ubuntu Mono', monospace;
+	letter-spacing: -0.07em;
+	font-size: small;
+
+	width: 75px;
+	text-align: center;
+}
+
+.celula-matricula{
+	font-family: 'Ubuntu Mono', monospace;
+	letter-spacing: -0.07em;
+	font-size: small;
+
+	width: 75px;
+	text-align: center;
+}
+
+.titulo-celula-lotacao{
+	font-family: 'Ubuntu Mono', monospace;
+	letter-spacing: -0.07em;
+	font-size: small;
+
+	width: 300px;
+	text-align: center;
+}
+
+.celula-lotacao{
+	font-family: 'Ubuntu Mono', monospace;
+	letter-spacing: -0.07em;
+	font-size: xx-small;
+
+	width: 300px;
+	text-align: left;
+}
+
+.titulo-celula-regiao{
+	font-family: 'Ubuntu Mono', monospace;
+	letter-spacing: -0.07em;
+	font-size: small;
+
+	width: 75px;
+	text-align: center;
+}
+
+.celula-regiao{
+	font-family: 'Ubuntu Mono', monospace;
+	letter-spacing: -0.07em;
+	font-size: x-small;
+
+	width: 75px;
+	text-align: center;
+}
+
+.titulo-celula-assinatura{
+	font-family: 'Ubuntu Mono', monospace;
+	letter-spacing: -0.07em;
+	font-size: small;
+
+	width: 250px;
+	border-right: 1px solid gray;
+	text-align: center;
+}
+
+.celula-assinatura{
+	font-family: 'Ubuntu Mono', monospace;
+	letter-spacing: -0.07em;
+	font-size: small;
+
+	width: 250px;
+	border-right: 1px solid gray;
+}

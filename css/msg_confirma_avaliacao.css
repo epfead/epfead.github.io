@@ -1,0 +1,44 @@
+/* Configuração do painel de Mensagem*/
+
+.container{
+	margin-top: 20px;
+}
+
+#id-jumbotron{
+	box-shadow: 5px 5px 5px rgba(0, 0, 0, 1);
+	border: 1px solid rgba(5, 56, 112, 1);
+	background-color: rgba(255, 255, 255, 1);
+}
+
+.display-4{
+	color: rgba(5, 56, 112, 1);
+}
+
+.lead{
+	padding-top: 8px;
+	color: rgba(5, 56, 112, 1);
+}
+
+.msg2{
+	color: rgba(5, 56, 112, 1);
+}
+
+.my-4{
+	background-color: rgba(255, 215, 0, 1);
+	height: 3px;
+}
+
+.my-1{
+	background-color: rgba(255, 215, 0, 1);
+	height: 1px;
+}
+
+#datahora-mensagem{
+	margin-top: 0px;
+	padding-top: 0px;
+}
+
+#titulo-inscricoes{
+	padding-top: 8px;
+	color: rgba(5, 56, 112, 1);
+}

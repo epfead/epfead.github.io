@@ -1,0 +1,369 @@
+@font-face {
+     font-family: Roboto;
+     src: url('../fonts/Roboto-Regular.ttf');
+}
+
+body {
+	background: url('../img/site/image_gallery-01.png');
+	background-attachment: fixed;
+	background-size: cover;
+	height: 100%;
+	width: 100%;
+}
+
+
+
+/* Configuração Geral - (padrão para vários elementos) */
+
+.espaco-entre-blocos{
+	padding-top: 40px;
+}
+
+
+
+/* Configuração do Título do formulário de inscrição */
+
+.titulo-formulario{
+	background-color: rgba(5, 56, 112, 1);
+	height: auto;
+	margin: 20px 10px 0px 10px;
+	padding: 0px 0px 0px 0px;
+	display: inline-flex;
+	border-radius: 10px 10px 0px 0px;
+}
+
+.container-do-titulo-texto{
+	width: 45%;
+	margin: 0px;
+	padding: 0px 0px 0px 10px;
+	display: inline-flex;
+	align-items: flex-end;
+	font-size: 2em;
+	color: white;
+	height: auto;
+}
+
+.container-do-titulo-logo{
+	width: 55%;
+	margin: 0px;
+	padding: 10px 0px 10px 0px;
+	text-align: right;
+	height: auto;
+}
+
+#logo-evento-peq{
+	height: 90px;
+	width: 120px;
+	border-radius: 5px 5px 5px 5px;
+	box-shadow: 0px 0px 3px 3px rgba(255, 255, 255, 1);
+	margin-right: 10px;
+}
+
+
+
+/* Configuração da área "Formação" */
+
+.titulo-h3{
+	color: rgba(5, 56, 112, 1);
+}
+
+.titulo-evento{
+	color: gray;
+}
+
+.descricao-evento-h4{
+	color: gray;
+}
+
+.formacao{
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin: -2px 10px 0px 10px;
+	background-color: rgba(255, 255, 255, 0.8);
+	height: 100%;
+	border-left: 2px solid rgba(5, 56, 112, 1);
+	border-right: 2px solid rgba(5, 56, 112, 1);
+}
+
+.linha{
+	height: 2px;
+	background-color: rgba(255, 215, 0, 1);
+	width: 80%;
+	margin-bottom: 15px;
+}
+
+
+/* Configuração da área "Orientações" */
+
+.orientacoes{
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin: -2px 10px 0px 10px;
+	background-color: rgba(255, 255, 255, 0.8);
+	height: 100%;
+	border-left: 2px solid rgba(5, 56, 112, 1);
+	border-right: 2px solid rgba(5, 56, 112, 1);
+}
+
+.informa{
+	color: gray;
+	text-align: justify;
+}
+
+#div-botao-ini-inscricao{
+	margin-top: 20px;
+	margin-bottom: 20px;
+	width: 100%;
+	height: auto;
+	text-align: center;
+}
+
+#botao-ini-inscricao{
+	margin-left: 20%;
+	margin-right: 20%;
+	width: 60%;
+}
+
+
+
+/* Configuração da área da "Logo Principal" */
+
+.logo-principal{
+	height: 100%;
+	padding-top: 50px;
+	padding-bottom: 30px;
+	margin: -1px 10px 0px 10px;
+	width: 100%;
+	text-align: center;
+	border-left: 2px solid rgba(5, 56, 112, 1);
+	border-right: 2px solid rgba(5, 56, 112, 1);
+	background-color: rgba(255,255,255,0.8);
+}
+
+
+#logo-evento-grande{
+	border-radius: 5px 5px 5px 5px;
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.8);
+	height: 250px;
+}
+
+
+
+/* Configuração da Área do Formulário */
+
+.formulario{
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin: -2px 10px 0px 10px;
+	background-color: rgba(255,255,255,0.8);
+	height: 100%;
+	border-left: 2px solid rgba(5, 56, 112, 1);
+	border-right: 2px solid rgba(5, 56, 112, 1);
+}
+
+.loading{
+	display: flex;
+	height: 100px;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+}
+
+#loading-ico{
+	height: 100px;
+	width: 100px;
+}
+
+#div-matricula{
+	width: 250px;
+}
+
+#botao-matricula{
+	width: 100px;
+}
+
+#cpf, #matricula, #telcontato, #celular{
+	width: 150px;
+}
+
+#cargofuncao, #regiao, #tipolocal{
+	width: 60%;
+}
+
+label {
+	color: gray;
+	margin: 15px 0px 0px 0px;
+}
+
+.grupo-botoes{
+	width: 100%;
+	height: auto;
+	margin: 80px 0px 20px 0px;
+	text-align: center;
+}
+
+.botao{
+	margin: 0px 10px 0px 10px;
+	width: 30%;
+}
+
+
+
+/* Configuração da área das AÇÕES */
+
+.container-da-acao{
+	margin-top: 25px;
+	padding: 10px 0px 15px 10px;
+	height: auto;
+	width: 100%;
+	border-left: 3px solid gray;
+	border-bottom: 3px solid gray;
+	color: gray;
+}
+
+.container-da-acao-ok{
+	margin-top: 25px;
+	padding: 10px 0px 15px 10px;
+	height: auto;
+	width: 100%;
+	border-left: 3px solid green;
+	color: gray;
+	background-color: rgba(189, 255, 169, 0.1);
+}
+
+.container-da-acao-no{
+	margin-top: 25px;
+	padding: 10px 0px 15px 10px;
+	height: auto;
+	width: 100%;
+	border-left: 3px solid red;
+	color: gray;
+	background-color: rgba(255, 169, 169, 0.1);
+}
+
+.cb-titulo-da-acao{
+	height: 20px;
+	width: 20px;
+}
+
+.titulo-da-acao{
+	margin-top: -5px;
+	font-size: 1.3em;
+	color: rgba(5, 56, 112, 1);
+}
+
+.disponib-ok{
+	margin: 0px 0px 0px 20px;
+	font-size: 1.2em;
+	color: green;
+}
+
+.disponib-no{
+	margin: 0px 0px 0px 20px;
+	font-size: 1.2em;
+	color: red;
+}
+
+.botao-saiba-mais{
+	margin: 10px 0px 0px 20px;
+}
+
+.imagem-bios{
+	width: 128px;
+	height: auto;
+}
+
+.data-hora-acao{
+	margin: 0px 0px 0px 20px;
+	color: rgba(5, 56, 112, 1);
+}
+
+.outras-informacoes{
+	margin: 0px 0px 0px 20px;
+	color: #191919;
+}
+
+.palestrante{
+	color: #191919;
+}
+
+
+/* Configuração da área da "Logo Institucional - final do formulário" */
+
+.logo-institucional{
+	height: 100%;
+	width: 100%;
+	padding-top: 50px;
+	padding-bottom: 50px;
+	margin: -2px 10px 0px 10px;
+	text-align: center;
+	border-left: 2px solid rgba(5, 56, 112, 1);
+	border-right: 2px solid rgba(5, 56, 112, 1);
+	background-color: rgba(255,255,255,0.8);
+}
+
+
+
+/* Configuração do rodapé do formulário */
+
+.rodape-form{
+	height: auto;
+	width: 100vw;
+	background-color: rgba(5, 56, 112, 1); 
+	color: white;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	margin: -2px 10px 50px 10px;
+	border-radius: 0px 0px 10px 10px;
+}
+
+.texto-rodape-form-01{
+	height: auto;
+	font-size: 1em;
+	color: rgba(255, 255, 255, 1);
+	text-align: center;
+	margin: 0px;
+}
+
+.texto-rodape-form-02{
+	height: auto;
+	font-size: 0.8em;
+	color: rgba(255, 255, 255, 1);
+	text-align: center;
+	margin: 0px;
+}
+
+
+
+/* Configuração do RODAPÉ da página */
+
+#rodape-pagina{
+	margin: 100px 0px 0px 0px;
+	background-color: rgba(255, 255, 255, 0.9);
+	height: auto;
+	display: block;
+	color: rgba(255, 255, 255, 1);
+	text-align: center;
+	border-top: 3px solid rgba(255, 215, 0, 1);
+}
+
+#texto-rodape-pagina-01{
+	display: block;
+	height: auto;
+	font-size: 0.8em;
+	color: rgba(5, 56, 112, 1);
+	margin: 10px 0px -10px 0px;
+}
+
+#texto-rodape-pagina-02{
+	display: block;
+	height: auto;
+	font-size: 0.6em;
+	color: rgba(5, 56, 112, 1);
+	margin: -10px 0px 10px 0px;
+}
+
+
+
+
+

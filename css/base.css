@@ -1,0 +1,30 @@
+.row, .form-group, .form-control{
+	margin-bottom: -5px;
+}
+
+.form-check{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.modal-header, .modal-footer{
+	color: #FFF;
+	background-color: #000;
+}
+
+.modal-body{
+	background-color: #EEE;
+}
+
+.botoes-finalizar{
+	text-align: center;
+}
+
+.botao-cancelar, .botao-concluir{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.container{
+	background-color: #EEE;
+}
