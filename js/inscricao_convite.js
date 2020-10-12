@@ -9,19 +9,19 @@ var idEvento = 0;
 
 // Função auxiliar que deverá ser executada ao carregar a página
 function initInscricao(){
-    document.getElementById('nome-localizado').innerHTML = 'MATRÍCULA NÃO ENCONTRADA';
+    var idServidor = document.getElementById('idservidor');
+    if (idServidor) {
+        idServidor.value = -2;
+    }
+    var nomeLocalizado = document.getElementById('nome-localizado');
+    if (nomeLocalizado) {
+        nomeLocalizado.innerHTML = 'MATRÍCULA NÃO ENCONTRADA';
+    }
     hideItem('formulario-nome-inscrito'); 
     hideItem('formulario-botoes-confirmacao'); 
     blockItem('bt-ok'); 
     blockItem('bt-no');
-    execRequestAjax('op0', 'acao=dados-evento'+'&idevento='+document.getElementById('idevento').value, '', '', setVariaveisGlobais, '', '');
-}
-
-
-// Função para setar as variáveis globais
-function setVariaveisGlobais(dataJson){
-    var objJson = JSON.parse(dataJson);
-    idEvento = objJson.EVENTO_ID;
+    idEvento = document.getElementById('idevento').value;
 }
 
 
