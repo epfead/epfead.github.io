@@ -9,7 +9,6 @@ var idEvento = 0;
 
 // Função auxiliar que deverá ser executada ao carregar a página
 function initInscricao(){
-    document.getElementById('idservidor').value = -2;
     document.getElementById('nome-localizado').innerHTML = 'MATRÍCULA NÃO ENCONTRADA';
     hideItem('formulario-nome-inscrito'); 
     hideItem('formulario-botoes-confirmacao'); 
