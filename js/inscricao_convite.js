@@ -9,19 +9,22 @@ var idEvento = 0;
 
 // Função auxiliar que deverá ser executada ao carregar a página
 function initInscricao(){
-    var idServidor = document.getElementById('idservidor');
-    if (idServidor) {
-        idServidor.value = -2;
+    if (document.getElementById('idservidor')) {
+        document.getElementById('idservidor').value = -2;
     }
-    var nomeLocalizado = document.getElementById('nome-localizado');
-    if (nomeLocalizado) {
-        nomeLocalizado.innerHTML = 'MATRÍCULA NÃO ENCONTRADA';
+    if (document.getElementById('nome-localizado')) {
+        document.getElementById('nome-localizado').innerHTML = 'MATRÍCULA NÃO ENCONTRADA';
     }
-    hideItem('formulario-nome-inscrito'); 
-    hideItem('formulario-botoes-confirmacao'); 
-    blockItem('bt-ok'); 
-    blockItem('bt-no');
-    idEvento = document.getElementById('idevento').value;
+    if (document.getElementById('idevento')) {
+        idEvento = document.getElementById('idevento').value;
+        hideItem('formulario-nome-inscrito'); 
+        hideItem('formulario-botoes-confirmacao'); 
+        blockItem('bt-ok'); 
+        blockItem('bt-no');
+    }else{
+        showItem('formulario-botoes-confirmacao'); 
+        unblockItem('bt-no');
+    }
 }
 
 
@@ -283,5 +286,12 @@ function validaFormulario(){
 
     return retorno;
 
+}
+
+// Limpa informações para nova tentativa de localizar matrícula
+function newConfirm(){
+    document.getElementById('checkBoxConfirmaOrientacoes').checked = false;
+    document.getElementById('matricula').value = '';
+    hideItem('div-botao-ini-inscricao');
 }
 

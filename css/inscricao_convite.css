@@ -1,0 +1,18 @@
+.box-principal{
+    background-color: #FFF;
+    text-align: justify;
+    padding: 15px 20px 15px 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px 1px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.div-matricula{
+    margin: 0 auto;
+    width: 250px;
+}
+
+.input-matricula{
+    width: 150px;
+}
