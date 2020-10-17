@@ -1,12 +1,16 @@
 @font-face {
-     font-family: Roboto;
-     src: url('../fonts/Roboto-Regular.ttf');
+	src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;700&display=swap');
+	font-family: 'Roboto', sans-serif;
+	font-weight: 300;
+	font-style: normal;
 }
 
 body {
+/*
 	background: url('../img/site/image_gallery-01.png');
 	background-attachment: fixed;
 	background-size: cover;
+*/
 	height: 100%;
 	width: 100%;
 }
