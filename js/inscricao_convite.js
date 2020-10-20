@@ -116,12 +116,14 @@ function infoUsuarioJaInscrito(){
 function carregaCamposUsuario(dataJson){
 
     var objJson = JSON.parse(dataJson);
+    var execAcao = document.getElementById('exec-acao').value;
 
     if (objJson.SERVIDOR.SERVIDOR_ID == -1){
 
         // Matrícula não encontrada ou matrícula inativa
         document.getElementById('idservidor').value = -2;
         document.getElementById('nome-localizado').innerHTML = 'MATRÍCULA NÃO ENCONTRADA';
+        document.getElementById('nome-servidor').value = '';
         hideItem('formulario-nome-inscrito'); 
         hideItem('formulario-botoes-confirmacao'); 
         blockItem('bt-ok'); 
@@ -134,14 +136,31 @@ function carregaCamposUsuario(dataJson){
         // Verifica se o servidor está inscrito
         if (objJson.SERVIDOR_INSCRITO === 'N') {
 
-            document.getElementById('idservidor').value = -1;
-            document.getElementById('nome-localizado').innerHTML = 'NÃO INSCRITO';
-            showItem('formulario-nome-inscrito'); 
-            hideItem('formulario-botoes-confirmacao'); 
-            blockItem('bt-ok'); 
-            blockItem('bt-no');
-            $('#modalAvisoNaoInscrito').modal();
-            document.getElementById('matricula').focus();
+            // O servidor ainda não se inscreveu:
+            if (execAcao === 'INSC-CONF-PRESENCA') {
+                
+                // Se é inscrição + confirmação (INSC-CONF-PRESENCA):
+                document.getElementById('idservidor').value = objJson.SERVIDOR.SERVIDOR_ID;
+                document.getElementById('nome-localizado').innerHTML = objJson.SERVIDOR.NOME_SERVIDOR;
+                document.getElementById('nome-servidor').value = objJson.SERVIDOR.NOME_SERVIDOR;
+                showItem('formulario-nome-inscrito'); 
+                showItem('formulario-botoes-confirmacao'); 
+                unblockItem('bt-ok'); 
+                unblockItem('bt-no');
+
+            }else{
+
+                // Se é apenas confirmação (CONFIRMAR-PRESENCA):
+                document.getElementById('idservidor').value = -1;
+                document.getElementById('nome-localizado').innerHTML = 'NÃO INSCRITO';
+                showItem('formulario-nome-inscrito'); 
+                hideItem('formulario-botoes-confirmacao'); 
+                blockItem('bt-ok'); 
+                blockItem('bt-no');
+                $('#modalAvisoNaoInscrito').modal();
+                document.getElementById('matricula').focus();
+
+            }
 
         }else{
 
@@ -151,6 +170,7 @@ function carregaCamposUsuario(dataJson){
                 // O servidor já confirmou inscrição:
                 document.getElementById('idservidor').value = 0;
                 document.getElementById('nome-localizado').innerHTML = objJson.SERVIDOR.NOME_SERVIDOR;
+                document.getElementById('nome-servidor').value = objJson.SERVIDOR.NOME_SERVIDOR;
                 showItem('formulario-nome-inscrito'); 
                 hideItem('formulario-botoes-confirmacao'); 
                 blockItem('bt-ok'); 
@@ -163,6 +183,7 @@ function carregaCamposUsuario(dataJson){
                 // O servidor ainda não confirmou inscrição:
                 document.getElementById('idservidor').value = objJson.SERVIDOR.SERVIDOR_ID;
                 document.getElementById('nome-localizado').innerHTML = objJson.SERVIDOR.NOME_SERVIDOR;
+                document.getElementById('nome-servidor').value = objJson.SERVIDOR.NOME_SERVIDOR;
                 showItem('formulario-nome-inscrito'); 
                 showItem('formulario-botoes-confirmacao'); 
                 unblockItem('bt-ok'); 
@@ -173,6 +194,7 @@ function carregaCamposUsuario(dataJson){
                 // O servidor ainda não confirmou inscrição:
                 document.getElementById('idservidor').value = objJson.SERVIDOR.SERVIDOR_ID;
                 document.getElementById('nome-localizado').innerHTML = objJson.SERVIDOR.NOME_SERVIDOR;
+                document.getElementById('nome-servidor').value = objJson.SERVIDOR.NOME_SERVIDOR;
                 showItem('formulario-nome-inscrito'); 
                 showItem('formulario-botoes-confirmacao'); 
                 unblockItem('bt-ok'); 
