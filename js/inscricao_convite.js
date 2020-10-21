@@ -108,7 +108,27 @@ function urlOpcaoMenu(opcao){
 
 // Verifica se o usuário já está inscrito no evento
 function infoUsuarioJaInscrito(){
-  execRequestAjax('op0', 'acao=verif-usuario-confirmou-presenca'+'&idevento='+document.getElementById('idevento').value+'&idacao='+document.getElementById('idacao').value+'&idlocal='+document.getElementById('idlocal').value+'&matricula='+document.getElementById('matricula').value, '', '', carregaCamposUsuario, '', 'loading-matricula');
+    let matricula = document.getElementById('matricula').value;
+    matricula = matricula.trim();
+    if ((matricula !== '')&&(matricula.length === 9)) {
+        
+        execRequestAjax('op0', 'acao=verif-usuario-confirmou-presenca'+'&idevento='+document.getElementById('idevento').value+'&idacao='+document.getElementById('idacao').value+'&idlocal='+document.getElementById('idlocal').value+'&matricula='+document.getElementById('matricula').value, '', '', carregaCamposUsuario, '', 'loading-matricula');
+
+    }else{
+
+        document.getElementById('idservidor').value = -2;
+        document.getElementById('nome-localizado').innerHTML = 'MATRÍCULA NÃO ENCONTRADA';
+        document.getElementById('nome-servidor').value = '';
+        document.getElementById('matricula').value = '';
+        hideItem('formulario-nome-inscrito'); 
+        hideItem('formulario-botoes-confirmacao'); 
+        blockItem('bt-ok'); 
+        blockItem('bt-no');
+        $('#modalMatriculaNaoEncontrada').modal();
+        document.getElementById('matricula').focus();
+
+    }
+
 }
 
 
@@ -124,6 +144,7 @@ function carregaCamposUsuario(dataJson){
         document.getElementById('idservidor').value = -2;
         document.getElementById('nome-localizado').innerHTML = 'MATRÍCULA NÃO ENCONTRADA';
         document.getElementById('nome-servidor').value = '';
+        document.getElementById('matricula').value = '';
         hideItem('formulario-nome-inscrito'); 
         hideItem('formulario-botoes-confirmacao'); 
         blockItem('bt-ok'); 
@@ -153,6 +174,7 @@ function carregaCamposUsuario(dataJson){
                 // Se é apenas confirmação (CONFIRMAR-PRESENCA):
                 document.getElementById('idservidor').value = -1;
                 document.getElementById('nome-localizado').innerHTML = 'NÃO INSCRITO';
+                document.getElementById('matricula').value = '';
                 showItem('formulario-nome-inscrito'); 
                 hideItem('formulario-botoes-confirmacao'); 
                 blockItem('bt-ok'); 
@@ -168,9 +190,10 @@ function carregaCamposUsuario(dataJson){
             if (objJson.CONFIRMOU_PRESENCA === 'S') {
             
                 // O servidor já confirmou inscrição:
-                document.getElementById('idservidor').value = 0;
-                document.getElementById('nome-localizado').innerHTML = objJson.SERVIDOR.NOME_SERVIDOR;
-                document.getElementById('nome-servidor').value = objJson.SERVIDOR.NOME_SERVIDOR;
+                document.getElementById('idservidor').value = -2;
+                document.getElementById('nome-localizado').innerHTML = '';
+                document.getElementById('nome-servidor').value = '';
+                document.getElementById('matricula').value = '';
                 showItem('formulario-nome-inscrito'); 
                 hideItem('formulario-botoes-confirmacao'); 
                 blockItem('bt-ok'); 
