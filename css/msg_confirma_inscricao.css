@@ -33,6 +33,12 @@
 	height: 1px;
 }
 
+.linha-tracejada{
+	border-bottom: 1px dashed rgba(105, 105, 105, 1);
+	width: 100%;
+	height: 1px;
+}
+
 #datahora-mensagem{
 	margin-top: 0px;
 	padding-top: 0px;
