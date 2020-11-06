@@ -149,9 +149,12 @@ function runModalCreate(idEvento){
 function msgModalCreate(jsonData){
 	
 	// Verifica se o objeto JSON tem algum erro antes de liberar a função.
+	let arrayRetorno = jsonData.split("|");
 	let libera = false;
 	try {
-		objJSONRetorno = JSON.parse(JSON.parse(jsonData));
+		//objJSONRetorno = JSON.parse(JSON.parse(jsonData));
+		objJSONRetorno = JSON.parse(arrayRetorno[0]);
+		objJSONRetorno.mensagem = arrayRetorno[1];
 		var obj = objJSONRetorno.perguntas;
 		if (obj.hasOwnProperty("idEvento")) {
 			libera = true;
@@ -317,7 +320,7 @@ function msgModalCreate(jsonData){
 						</div>
 
 						<div class="modal-body">
-							<p>`+obj.mensagem+`</p>
+							<p>`+objJSONRetorno.mensagem+`</p>
 							`+perguntas+`
 						</div>
 
