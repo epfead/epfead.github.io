@@ -1,7 +1,3 @@
-//=========================
-// *** Requisições Ajax ***
-//=========================
-
 // Variáveis globais
 var idEvento = 0;
 var idServidor = 0;
@@ -16,11 +12,12 @@ var arrayFuncoes = [];
 var arrayEventos = [];
 var limitarCargo = 'N';
 var limitarFuncao = 'N';
+var limitarPreInscritos = 'N';
 var bloqueiaSeInscritoEmOutroEvento = 'N';
 
 // Função auxiliar que deverá ser executada ao carregar a página
 function initInscricao(){
-  execRequestAjax('op0', 'acao=dados-evento'+'&idevento='+document.getElementById('idevento').value, '', '', setVariaveisGlobais, '', '');
+  execRequestAjax('resource/res_inscricao_turma_acao.php', 'acao=dados-evento'+'&idevento='+document.getElementById('idevento').value, '', '', setVariaveisGlobais, '', '');
 }
 
 // Função para setar as variáveis globais
@@ -44,6 +41,8 @@ function setVariaveisGlobais(dataJson){
     arrayLotacoes = JSON.parse(objJson.FILTRO_ORGAO_ID);
     if (arrayLotacoes == null) {arrayLotacoes = []};
 
+    limitarPreInscritos = objJson.LIMITAR_PRE_INSCRITOS;
+
     bloqueiaSeInscritoEmOutroEvento = objJson.BLOQ_SE_INSCRITO_OUTRO_EVENTO;
     arrayEventos = JSON.parse(objJson.FILTRO_EVENTO_ID);
     if (arrayEventos == null) {arrayEventos = []};
@@ -62,17 +61,8 @@ function setVariaveisGlobais(dataJson){
 
 
 // Executa as funções de requisição via Ajax
-// opcao: string que define o arquivo que será chamado na função "urlOpcaoMenu()";
-// params: string com os parâmetros a serem passados via GET;
-// idElement: id do elemento que receberá o retorno AJAX;
-// typeAction define que tipo de ação tomar sendo:
-// 'returnHtml'  : retorna um Html que será inserido em algum local definido em 'idElement';
-// 'returnValue' : retorna um valor ou conjnto de dados a ser trabalhado em um módulo;
-// execFunction define qual função executar após o retorno Ajax;
-// 'paramFunction' : define os parâmetros a serem passados com a função informada em execFunction;
-// 'idLoading' : informe o id do elemento responsável por exibir a animação de aguardando
 function execRequestAjax(opcao, params, idElement='', typeAction = 'returnHtml', execFunction = carregaContainerAcoes, paramFunction = '', idLoading = ''){
-    var url = urlOpcaoMenu(opcao) + '?' + params;
+    var url = opcao + '?' + params;
 
     $(document).ready(function(){
 
@@ -114,31 +104,9 @@ function carregaContainerAcoes(idContainer, htmlAcoes){
     document.getElementById(idContainer).innerHTML = htmlAcoes;
 }
 
-// Define a URL de chamada pela função "execRequestAjax" definido no parâmetro "opcao"
-function urlOpcaoMenu(opcao){
-
-    switch (opcao) {
-
-        case 'op0':
-            // Chama o arquivo de recursos para a página inscricao_turma.php
-            return 'resource/res_inscricao_turma_acao.php';
-            break;
-
-        case 'op1':
-            return '';
-            break;
-
-        default:
-            return '';
-            break;
-
-    }
-
-}
-
 // Verifica se o usuário já está inscrito no evento
 function infoUsuarioJaInscrito(){
-  execRequestAjax('op0', 'acao=verif-usuario-inscrito'+'&idevento='+document.getElementById('idevento').value+'&matricula='+document.getElementById('matricula').value, '', '', carregaCamposUsuario, '', 'loading-matricula');
+  execRequestAjax('resource/res_inscricao_turma_acao.php', 'acao=verif-usuario-inscrito'+'&idevento='+document.getElementById('idevento').value+'&matricula='+document.getElementById('matricula').value, '', '', carregaCamposUsuario, '', 'loading-matricula');
 }
 
 // Recebe as informações do usuário via Ajax e adiciona no formulário
@@ -189,7 +157,7 @@ function carregaCamposUsuario(dataJson){
         
                 
         // Trecho que verifica as restrições definidas para a formação: Cargo, Função, Lotação, Inscrição em evento anterior
-        if ((limitarCargo === 'S')||(limitarFuncao === 'S')||(limitarLotacao === 'S')||(bloqueiaSeInscritoEmOutroEvento === 'S')) {
+        if ((limitarCargo === 'S')||(limitarFuncao === 'S')||(limitarLotacao === 'S')||(limitarPreInscritos === 'S')||(bloqueiaSeInscritoEmOutroEvento === 'S')) {
             
             cargoEncontrado = false;
             arrayCargos.forEach((icargo)=>{
@@ -215,6 +183,9 @@ function carregaCamposUsuario(dataJson){
             }
             if (limitarLotacao === 'S'){
                 ok.push(lotacaoEncontrada);
+            }
+            if (limitarPreInscritos === 'S') {
+                ok.push(objJson.PRE_INSCRICAO);
             }
 
             restricaoOk = false;
@@ -263,6 +234,8 @@ function carregaCamposUsuario(dataJson){
             blockItem('regiao');
             if ((bloqueiaSeInscritoEmOutroEvento === 'S')&&(okEventoAnterior === false)) {
                 $('#modalTentativaInscricaoVinculado').modal();
+            }else if(limitarPreInscritos === 'S') {
+                $('#modalAvisoRestricaoPreInscritos').modal();
             }else{
                 $('#modalAvisoRestricao').modal();
             }
@@ -344,7 +317,7 @@ function carregaCamposUsuario(dataJson){
 
 // Busca a lista de lotações de uma região
 function listaLotacoesInfoRegiao(){
-  execRequestAjax('op0', 'acao=lista-lotacoes'+'&idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao-lotacao').value, 'iddesignacao-lotacao', 'returnHtml', carregaContainerSelectDesignacao, 'loading-idregiao-lotacao');
+  execRequestAjax('resource/res_inscricao_turma_acao.php', 'acao=lista-lotacoes'+'&idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao-lotacao').value, 'iddesignacao-lotacao', 'returnHtml', carregaContainerSelectDesignacao, 'loading-idregiao-lotacao');
 }
 
 // Recebe as informações de Designações para o select
@@ -390,7 +363,7 @@ function liberaEscolhaLocal(caracteristica = 1,idRegiaoAbrangencia=0){
 
 // Busca a lista de regiões do evento para o select
 function listaRegioesInfoTipoLocal(idRegiaoAbrangencia=0){
-  execRequestAjax('op0', 'acao=lista-regioes-do-evento'+'&idevento='+document.getElementById('idevento').value+'&tipolocal='+document.getElementById('tipolocal').value+'&idregiao-abrangencia='+idRegiaoAbrangencia, 'regiao', 'returnHtml', carregaContainerSelectRegiao, 'loading-tipolocal');
+  execRequestAjax('resource/res_inscricao_turma_acao.php', 'acao=lista-regioes-do-evento'+'&idevento='+document.getElementById('idevento').value+'&tipolocal='+document.getElementById('tipolocal').value+'&idregiao-abrangencia='+idRegiaoAbrangencia, 'regiao', 'returnHtml', carregaContainerSelectRegiao, 'loading-tipolocal');
 }
 
 // Recebe as informações das regiões do evento para o select
@@ -414,7 +387,7 @@ function carregaContainerSelectRegiao(idElement, data){
 // Se um "LOCAL_ID" for atribuído a "valuePreSelect", o local será selecionado por padrão após 
 // os locais serem carregados pela função "carregaContainerSelectLocal"
 function listaLocaisInfoRegiao(idRegiaoAbrangencia=0, valuePreSelect=""){
-  execRequestAjax('op0', 'acao=lista-locais-do-evento'+'&idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('regiao').value+'&tipolocal='+document.getElementById('tipolocal').value+'&idregiao-abrangencia='+idRegiaoAbrangencia, 'local', 'returnHtml', carregaContainerSelectLocal, valuePreSelect,'loading-regiao');
+  execRequestAjax('resource/res_inscricao_turma_acao.php', 'acao=lista-locais-do-evento'+'&idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('regiao').value+'&tipolocal='+document.getElementById('tipolocal').value+'&idregiao-abrangencia='+idRegiaoAbrangencia, 'local', 'returnHtml', carregaContainerSelectLocal, valuePreSelect,'loading-regiao');
 }
 
 // Recebe as informações dos locais do evento para o select
@@ -448,7 +421,7 @@ function carregaContainerSelectLocal(idElement, data, preSelect=""){
 
 // Busca a lista de ações do local escolhido
 function listaAcoesInfoLocal(){
-  execRequestAjax('op0', 'acao=lista-acoes-evento-turma'+'&idevento='+document.getElementById('idevento').value+'&idlocal='+document.getElementById('local').value, 'acoes', 'returnHtml', carregaContainerAcoes, 'loading-acoes');
+  execRequestAjax('resource/res_inscricao_turma_acao.php', 'acao=lista-acoes-evento-turma'+'&idevento='+document.getElementById('idevento').value+'&idlocal='+document.getElementById('local').value, 'acoes', 'returnHtml', carregaContainerAcoes, 'loading-acoes');
 }
 
 // Recebe as informações das ações do evento
@@ -512,12 +485,12 @@ function cancelAndReturnToHome(){
 
 // Ações do botão de confirmação para EDITAR inscrição
 function btnConfirmaEditarInscricao(){
-    execRequestAjax('op0', 'acao=cancelar-minha-inscricao'+'&idevento='+document.getElementById('idevento').value+'&matricula='+document.getElementById('matricula').value, '', 'execute', infoUsuarioJaInscrito, '');
+    execRequestAjax('resource/res_inscricao_turma_acao.php', 'acao=cancelar-minha-inscricao'+'&idevento='+document.getElementById('idevento').value+'&matricula='+document.getElementById('matricula').value, '', 'execute', infoUsuarioJaInscrito, '');
 }
 
 // Ações do botão de confirmação para CANCELAR inscrição
 function btnCancelarMinhaInscricao(){
-    execRequestAjax('op0', 'acao=cancelar-minha-inscricao'+'&idevento='+document.getElementById('idevento').value+'&matricula='+document.getElementById('matricula').value, '', 'execute', msgDeletedAndReturnToHome, '');
+    execRequestAjax('resource/res_inscricao_turma_acao.php', 'acao=cancelar-minha-inscricao'+'&idevento='+document.getElementById('idevento').value+'&matricula='+document.getElementById('matricula').value, '', 'execute', msgDeletedAndReturnToHome, '');
 }
 
 // Finaliza a mensagem de cancelamento
