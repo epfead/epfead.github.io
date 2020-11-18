@@ -158,9 +158,10 @@ function carregaCamposUsuario(dataJson){
         if (objJson.SERVIDOR_INSCRITO === 'N') {
 
             // O servidor ainda não se inscreveu:
-            if (execAcao === 'INSC-CONF-PRESENCA') {
+            if ((execAcao === 'INSC-CONF-PRESENCA')||(execAcao === 'AVALIA-CONF-PRESENCA')) {
                 
                 // Se é inscrição + confirmação (INSC-CONF-PRESENCA):
+                // ou se é inscrição + confirmação + avaliação (AVALIA-CONF-PRESENCA):
                 document.getElementById('idservidor').value = objJson.SERVIDOR.SERVIDOR_ID;
                 document.getElementById('nome-localizado').innerHTML = objJson.SERVIDOR.NOME_SERVIDOR;
                 document.getElementById('nome-servidor').value = objJson.SERVIDOR.NOME_SERVIDOR;

@@ -1,0 +1,112 @@
+.toolbar{
+    padding: 0px 10px 0px 0px;
+    margin: 0px;
+    width: 100%;
+    height: auto;
+    border: 1px dashed green;
+    text-align: right;
+}
+
+.label-bt-toolbar-checkbox{
+    color: #FFA500;
+    background-color: #FFFFFF;
+    border: 1px solid #FFA500;
+    border-radius: 3px;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.span-label-bt-toolbar-checkbox{
+    color: #FFA500;
+    border-radius: 3px;
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 1.8;
+    text-align: center;
+    width: 36px;
+    height: 36px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.bt-toolbar-checkbox {
+    display: none;
+}
+
+.bt-toolbar-checkbox + label span{
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    margin: 0px;
+    padding: 0px;
+}
+
+.bt-toolbar-checkbox:hover + label{
+    box-shadow: 0 0 0.2em #FFA500;
+}
+
+.bt-toolbar-checkbox:checked + label{
+    background-color: #FFA500;
+}
+
+.bt-toolbar-checkbox:checked + label span{
+    color: white;
+}
+
+.spacer{
+    border: 1px solid #FFA500;
+    padding: 0px;
+    margin: 0px 15px 0px 10px;
+    box-shadow: 0 0 0.2em #FFA500;
+    height: 36px;
+    width: 1px;
+}
+
+.bt-toolbar-button{
+    color: #FFA500;
+    background-color: #FFFFFF;
+    border: 1px solid #FFA500;
+    border-radius: 3px;
+    cursor: pointer;
+    height: 36px;
+    width: 36px;
+    display: inline-block;
+    padding: 0px;
+    margin: 0px;
+    position: relative;
+    top: -1px;
+}
+
+.span-label-bt-toolbar-button{
+    color: #FFA500;
+    border-radius: 3px;
+    vertical-align: middle;
+    display: inline-block;
+    line-height: 1.8;
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
+.bt-toolbar-button:hover{
+    box-shadow: 0 0 0.2em #FFA500;
+    background-color: #FFA500;
+    color: #FFFFFF;
+}
+
+.span-label-bt-toolbar-button:hover{
+    color: #FFFFFF;
+}
+
+.bt-toolbar-button:focus {
+    background-color: #FFA500;
+    color: #FFFFFF;
+    border: 1px solid #FFA500;
+    outline: none;
+    box-shadow: none;
+}
+
