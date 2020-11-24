@@ -26,6 +26,16 @@ function setSession(jsonSession){
 
 
 
+/*=============================================================*/
+/* Funções necessárias serem executadas a cada requisição Ajax */
+/*=============================================================*/
+
+function reloadBasicFunctions() {
+	// Aciona o tooltip bootstrap para elementos que o contém
+	$('[data-toggle="tooltip"]').tooltip();
+};
+
+
 
 /*========================================*/
 /* Funções de "elementos rastreados"      */
@@ -330,6 +340,7 @@ function execRequestAjax(opcao, params, idElement, typeAction = 'returnHtml', ex
 				if (idLoading != '') {
 					hideItem(idLoading);
 				}
+				reloadBasicFunctions();
 			}
 
 		});
@@ -515,7 +526,7 @@ function urlOpcaoMenu(opcao){
 
 		case 'op27':
 			// Retorna a lista para confirmar frequência
-			return 'resource/res_pc_relatorios_listafrequencia_lista.php';
+			return 'resource/res_pc_relatorios_listafrequencia_acoes.php';
 			break;
 		
 		case 'op28':
@@ -1871,10 +1882,12 @@ function execListaUnidades(){
 }
 
 
+
 /* res_pc_ferramentas_cadlocais.php */
 function execListaCadLocais(){
 	execRequestAjax('op40', 'idregiao='+document.getElementById('idregiao').value+'&tipo='+document.getElementById('tipo-unidade').value+'&ordem='+document.getElementById('ordem').value, 'container-requisicao');
 }
+
 
 
 /* res_pc_relatorios_listafrequencia */
@@ -1901,9 +1914,104 @@ function gotoPageListaFrequencia(){
 }
 
 function refreshTableListaFrequencia(pagina){
+	var	filtroPresenca = '';
+	if (document.getElementById('filtro-presenca-todos').checked) {
+		filtroPresenca = '';
+	}else if (document.getElementById('filtro-presenca-sim').checked) {
+		filtroPresenca = 'S';
+	}else if (document.getElementById('filtro-presenca-nao').checked) {
+		filtroPresenca = 'N';
+	}
+
+	var element = document.getElementById('ordenar');
+	if (document.getElementById('ordem-crescente').checked) {
+		element.options[0].value = 'NOME_SERVIDOR ASC';
+		element.options[1].value = 'MATRICULA ASC';
+		element.options[2].value = 'REGIAO_ID ASC, NOME_SERVIDOR';
+	}else if(document.getElementById('ordem-decrescente').checked){
+		element.options[0].value = 'NOME_SERVIDOR DESC';
+		element.options[1].value = 'MATRICULA DESC';
+		element.options[2].value = 'REGIAO_ID DESC, NOME_SERVIDOR';
+	}
+
 	let paramsForTable = 'idevento='+document.getElementById('idevento').value;
 	paramsForTable += '&idlocal='+document.getElementById('idlocal').value;
 	paramsForTable += '&idacao='+document.getElementById('idacao').value;
+	paramsForTable += '&idregiao='+document.getElementById('idregiao').value;
+	paramsForTable += '&idregiaofiltro='+document.getElementById('idregiaofiltro').value;
+	paramsForTable += '&ordenar='+document.getElementById('ordenar').value;
+	paramsForTable += '&filtropresenca='+filtroPresenca;
 	paramsForTable += '&numpagina='+pagina;
-	execRequestAjx('resource/res_pc_relatorios_listafrequencia_lista.php', paramsForTable, 'container-requisicao');
+	paramsForTable += '&acao=lista-inscritos';
+	execRequestAjx('resource/res_pc_relatorios_listafrequencia_acoes.php', paramsForTable, 'container-requisicao');
+}
+
+function getListaInscritos(){
+	var	filtroPresenca = '';
+	if (document.getElementById('filtro-presenca-todos').checked) {
+		filtroPresenca = '';
+	}else if (document.getElementById('filtro-presenca-sim').checked) {
+		filtroPresenca = 'S';
+	}else if (document.getElementById('filtro-presenca-nao').checked) {
+		filtroPresenca = 'N';
+	}
+
+	var element = document.getElementById('ordenar');
+	if (document.getElementById('ordem-crescente').checked) {
+		element.options[0].value = 'NOME_SERVIDOR ASC';
+		element.options[1].value = 'MATRICULA ASC';
+		element.options[2].value = 'REGIAO_ID ASC, NOME_SERVIDOR';
+	}else if(document.getElementById('ordem-decrescente').checked){
+		element.options[0].value = 'NOME_SERVIDOR DESC';
+		element.options[1].value = 'MATRICULA DESC';
+		element.options[2].value = 'REGIAO_ID DESC, NOME_SERVIDOR';
+	}
+
+	execRequestAjax('op27', 'idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao').value+'&idlocal='+document.getElementById('idlocal').value+'&idacao='+document.getElementById('idacao').value+'&idregiaofiltro='+document.getElementById('idregiaofiltro').value+'&ordenar='+document.getElementById('ordenar').value+'&filtropresenca='+filtroPresenca+'&acao=lista-inscritos', 'container-requisicao');
+}
+
+function selectAnoLoadEventos(ano){
+	
+	// Localiza os eventos de acordo com o ano selecionado
+	let params = 'ano='+ano+'&acao=lista-eventos-ano';
+	execRequestAjx('resource/res_pc_relatorios_listafrequencia_acoes.php', params, 'idevento');
+
+	// Limpa o select de locais e ações do evento
+	document.getElementById('idlocal').innerHTML = '';
+	document.getElementById('idacao').innerHTML = '';
+
+	// Limpa a área da tabela
+	execRequestAjax('op4', '', 'container-requisicao');
+
+}
+
+function selectEventoLoadLocais(){
+	
+	// Localiza os locais do evento de acordo com o ano e evento selecionados
+	execRequestAjax('op9', 'idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao').value, 'idlocal');
+
+	// Limpa o select de ações do evento
+	document.getElementById('idacao').innerHTML = '';
+
+	// Limpa a área da tabela
+	execRequestAjax('op4', '', 'container-requisicao');
+
+}
+
+function selectLocalLoadAcoes(){
+	
+	// Localiza as ações do evento de acordo com o ano, evento e local selecionados
+	execRequestAjax('op8', 'idevento='+document.getElementById('idevento').value, 'idacao');
+
+	// Limpa a área da tabela
+	execRequestAjax('op4', '', 'container-requisicao');
+
+}
+
+function testeLista(){
+	if (document.getElementById('container-lista')) {
+		console.log('Lista Ativa!');
+	}else{
+		console.log('Não temos lista sendo exibida!');
+	}
 }

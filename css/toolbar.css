@@ -3,7 +3,6 @@
     margin: 0px;
     width: 100%;
     height: auto;
-    border: 1px dashed green;
     text-align: right;
 }
 
@@ -110,3 +109,7 @@
     box-shadow: none;
 }
 
+.bt-toolbar-select {
+    border: 1px solid #FFA500;
+    cursor: pointer;
+}
