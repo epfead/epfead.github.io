@@ -146,19 +146,27 @@ body{
 	margin-bottom: 0px;
 }
 
+.linha-tracejada-cinza{
+	height: 1px;
+	margin: 5px 0px 5px 0px;
+	border-top: 1px dashed #CCC;
+}
+
 #logo-evento-peq{
 	height: 90px;
 	width: 120px;
 	margin-bottom: 10px;
 }
 
-.info-regiao{
+.info-login{
 	color: #FFF;
 	text-align: center;
 	width: 14.5rem;
 	height: auto;
 	margin: 3px;
 }
+
+
 
 #checkbox{
 	width: 100%;
@@ -244,6 +252,28 @@ body{
 	height: auto;
 	background-color: #EEE;
 }
+
+
+/* Configuração do novo ícone de "aguardando" (sem uso de imagens css puro aplicado a uma div) */
+.aguarde-ico{
+	margin-left: 40%;
+	margin-top: 250px;
+	position: absolute;
+	z-index: 1001;
+	animation: rotacao 1s linear infinite;
+	border: 6px solid rgba(0, 0, 0, 0.2);
+	border-top-color: rgba(255, 215, 0, 1);
+	border-radius: 50%;
+	height: 50px;
+	width: 50px;
+}
+
+@keyframes rotacao {
+	to {
+	  transform: rotate(360deg);
+	}
+}
+
 
 /* Configuração do ícone de "aguardando" */
 #loading-local{

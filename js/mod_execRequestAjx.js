@@ -64,4 +64,5 @@ function execRequestAjx(urlPhpFile, params, idElement='', typeAction = 'returnHt
 // o valor "returnHtml", insere o retorno no container informado no parâmetro "idElement"
 function insertHTMLContainer(idContainer, htmlAcoes){
     document.getElementById(idContainer).innerHTML = htmlAcoes;
+    reloadBasicFunctions();
 }

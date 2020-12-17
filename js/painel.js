@@ -2,16 +2,15 @@
 /* Função de inicialização                */
 /*========================================*/
 
-//document.onload = initializePainel();
-
-var session;
+var session ;
 var iacao = 0;
 
-function initializePainel(){
+function initializePanel(){
 	openCloseMenuSideBar();
-	execRequestAjax(session['opcao'], '', 'conteudo', 'returnHtml', carregaContainerAcoes, '', 'loading-painel');
-	initEventsPainel();
-	showMsgAlerta(session['alerta']);
+
+	// Busca os dados do servidor que efetuou login
+	let paramsForInfo = 'idusuario='+document.getElementById('pc-idusuario').value+'&acao=dados-usuario';
+	execRequestAjx('resource/res_pc_acoes.php', paramsForInfo, '', 'returnJSON', setSessionAndPreparePanel);
 }
 
 function openCloseMenuSideBar(){
@@ -20,20 +19,16 @@ function openCloseMenuSideBar(){
 	});
 }
 
-function setSession(jsonSession){
-	session = jsonSession;
+function setSessionAndPreparePanel(jsonSession){
+	session = JSON.parse(jsonSession);
+	session.opcao = document.getElementById('opcao').value;
+	session.opcaoNavbar = document.getElementById('opcao-navbar').value;
+	document.getElementById('info-nome-usuario').innerHTML = session.nomeUsuario;
+	document.getElementById('info-lotacao-usuario').innerHTML = session.lotacao;
+	document.getElementById('info-regiao-usuario').innerHTML = session.regiao;
+	initEventsPainel();
 }
 
-
-
-/*=============================================================*/
-/* Funções necessárias serem executadas a cada requisição Ajax */
-/*=============================================================*/
-
-function reloadBasicFunctions() {
-	// Aciona o tooltip bootstrap para elementos que o contém
-	$('[data-toggle="tooltip"]').tooltip();
-};
 
 
 
@@ -83,207 +78,185 @@ function initEventsPainel() {
 
 	              case "#btm0101":
 	              	// Informações: Números
-					session['opcao'] = 'op0';
-					session['opcao-navbar'] = 'informacoes';
-					session['alerta'] = 0;
-	                execRequestAjax('op0', '', 'conteudo');
-					setTituloNavbar(session['opcao-navbar']);
+					session.opcao = 'op0';
+					session.opcaoNavbar = 'informacoes';
+	                execRequestAjx(urlMenuOption('op0'), '', 'conteudo', 'returnHtml', insertHTMLToPanel,'','aguarde-ico');
+					setTituloNavbar(session.opcaoNavbar);
 	              	break;
 
 	              case "#btm0102":
 	              	// Informações: Simplificado
-					session['opcao'] = 'op1';
-					session['opcao-navbar'] = 'informacoes';
-					session['alerta'] = 0;
-	                execRequestAjax('op1', '', 'conteudo');
-					setTituloNavbar(session['opcao-navbar']);
+					session.opcao = 'op1';
+					session.opcaoNavbar = 'informacoes';
+	                execRequestAjx(urlMenuOption('op1'), '', 'conteudo', 'returnHtml', insertHTMLToPanel,'','aguarde-ico');
+					setTituloNavbar(session.opcaoNavbar);
 	              	break;
 
 	              case "#btm0103":
 	              	// Informações: Detalhado
-					session['opcao'] = 'op2';
-					session['opcao-navbar'] = 'informacoes';
-					session['alerta'] = 0;
-	                execRequestAjax('op2', '', 'conteudo');
-					setTituloNavbar(session['opcao-navbar']);
+					session.opcao = 'op2';
+					session.opcaoNavbar = 'informacoes';
+	                execRequestAjx(urlMenuOption('op2'), '', 'conteudo', 'returnHtml', insertHTMLToPanel,'','aguarde-ico');
+					setTituloNavbar(session.opcaoNavbar);
 	              	break;
 
 	              case "#btm0201":
 	              	// Eventos: Criar evento
-					session['opcao'] = 'op11';
-					session['opcao-navbar'] = 'eventos';
-					session['alerta'] = 0;
-					execRequestAjax('op11', '', 'conteudo');
-					setTituloNavbar(session['opcao-navbar']);
+					session.opcao = 'op11';
+					session.opcaoNavbar = 'eventos';
+					execRequestAjx(urlMenuOption('op11'), '', 'conteudo', 'returnHtml', insertHTMLToPanel,'','aguarde-ico');
+					setTituloNavbar(session.opcaoNavbar);
 	              	break;
 
 	              case "#btm0202":
 	              	// Eventos: Editar evento (PÁGINA EM BRANCO: EM CONSTRUÇÃO!)
-					session['opcao'] = 'op4';
-					session['opcao-navbar'] = 'eventos';
-					session['alerta'] = 0;
-					execRequestAjax('op4', '', 'conteudo');
-					setTituloNavbar(session['opcao-navbar']);
+					session.opcao = 'op4';
+					session.opcaoNavbar = 'eventos';
+					execRequestAjx(urlMenuOption('op4'), '', 'conteudo', 'returnHtml', insertHTMLToPanel,'','aguarde-ico');
+					setTituloNavbar(session.opcaoNavbar);
 	              	break;
 
 	              case "#btm0203":
 	              	// Eventos: Excluir evento (PÁGINA EM BRANCO: EM CONSTRUÇÃO!)
-					session['opcao'] = 'op4';
-					session['opcao-navbar'] = 'eventos';
-					session['alerta'] = 0;
-					execRequestAjax('op4', '', 'conteudo');
-					setTituloNavbar(session['opcao-navbar']);
+					session.opcao = 'op4';
+					session.opcaoNavbar = 'eventos';
+					execRequestAjx(urlMenuOption('op4'), '', 'conteudo', 'returnHtml', insertHTMLToPanel,'','aguarde-ico');
+					setTituloNavbar(session.opcaoNavbar);
 	              	break;
 
 	              case "#btm0204":
 	              	// Eventos: Confirmar frequência
-					session['opcao'] = 'op6';
-					session['opcao-navbar'] = 'eventos';
-					session['alerta'] = 0;
-					execRequestAjax('op6', '', 'conteudo');
-					setTituloNavbar(session['opcao-navbar']);
+					session.opcao = 'op6';
+					session.opcaoNavbar = 'eventos';
+					execRequestAjx(urlMenuOption('op6'), '', 'conteudo', 'returnHtml', insertHTMLToPanel,'','aguarde-ico');
+					setTituloNavbar(session.opcaoNavbar);
 	              	break;
 
 	              case "#btm0205":
 	              	// Eventos: Inscrição
-					session['opcao'] = 'op33';
-					session['opcao-navbar'] = 'eventos';
-					session['alerta'] = 0;
-					execRequestAjax('op33', '', 'conteudo');
-					setTituloNavbar(session['opcao-navbar']);
+					session.opcao = 'op33';
+					session.opcaoNavbar = 'eventos';
+					execRequestAjx(urlMenuOption('op33'), '', 'conteudo', 'returnHtml', insertHTMLToPanel,'','aguarde-ico');
+					setTituloNavbar(session.opcaoNavbar);
 	              	break;
 
 	              case "#btm0301":
 	              	// Relatórios: Lista de frequência
-					session['opcao'] = 'op15';
-					session['opcao-navbar'] = 'relatorios';
-					session['alerta'] = 0;
-	              	execRequestAjax('op15', '', 'conteudo');
-					setTituloNavbar(session['opcao-navbar']);
+					session.opcao = 'op15';
+					session.opcaoNavbar = 'relatorios';
+	              	execRequestAjx(urlMenuOption('op15'), '', 'conteudo', 'returnHtml', insertHTMLToPanel,'','aguarde-ico');
+					setTituloNavbar(session.opcaoNavbar);
 	              	break;
 
 	              case "#btm0302":
 	              	// Relatórios: Exportação para o Fênix
-					session['opcao'] = 'op23';
-					session['opcao-navbar'] = 'relatorios';
-					session['alerta'] = 0;
-					execRequestAjax('op23', '', 'conteudo');
-					setTituloNavbar(session['opcao-navbar']);
+					session.opcao = 'op23';
+					session.opcaoNavbar = 'relatorios';
+					execRequestAjx(urlMenuOption('op23'), '', 'conteudo', 'returnHtml', insertHTMLToPanel,'','aguarde-ico');
+					setTituloNavbar(session.opcaoNavbar);
 	              	break;
 
 	              case "#btm0303":
 	              	// Relatórios: Relatório final
-					session['opcao'] = 'op24';
-					session['opcao-navbar'] = 'relatorios';
-					session['alerta'] = 0;
-					execRequestAjax('op24', '', 'conteudo');
-					setTituloNavbar(session['opcao-navbar']);
+					session.opcao = 'op24';
+					session.opcaoNavbar = 'relatorios';
+					execRequestAjx(urlMenuOption('op24'), '', 'conteudo', 'returnHtml', insertHTMLToPanel,'','aguarde-ico');
+					setTituloNavbar(session.opcaoNavbar);
 	              	break;
 
 	              case "#btm0304":
 	              	// Relatórios: Certificados
-					session['opcao'] = 'op25';
-					session['opcao-navbar'] = 'relatorios';
-					session['alerta'] = 0;
-					execRequestAjax('op25', '', 'conteudo');
-					setTituloNavbar(session['opcao-navbar']);
+					session.opcao = 'op25';
+					session.opcaoNavbar = 'relatorios';
+					execRequestAjx(urlMenuOption('op25'), '', 'conteudo', 'returnHtml', insertHTMLToPanel,'','aguarde-ico');
+					setTituloNavbar(session.opcaoNavbar);
 	              	break;
 
 	              case "#btm0305":
 	              	// Relatórios: Avaliações
-					session['opcao'] = 'op26';
-					session['opcao-navbar'] = 'relatorios';
-					session['alerta'] = 0;
-					execRequestAjax('op26', '', 'conteudo');
-					setTituloNavbar(session['opcao-navbar']);
+					session.opcao = 'op26';
+					session.opcaoNavbar = 'relatorios';
+					execRequestAjx(urlMenuOption('op26'), '', 'conteudo', 'returnHtml', insertHTMLToPanel,'','aguarde-ico');
+					setTituloNavbar(session.opcaoNavbar);
 	              	break;
 
 	              case "#btm0401":
 	              	// Usuários: Manutenção de usuários
-					session['opcao'] = 'op12';
-					session['opcao-navbar'] = 'usuarios';
-					session['alerta'] = 0;
-	              	execRequestAjax('op12', '', 'conteudo');
-					setTituloNavbar(session['opcao-navbar']);
+					session.opcao = 'op12';
+					session.opcaoNavbar = 'usuarios';
+	              	execRequestAjx(urlMenuOption('op12'), '', 'conteudo', 'returnHtml', insertHTMLToPanel,'','aguarde-ico');
+					setTituloNavbar(session.opcaoNavbar);
 	              	break;
 
 	              case "#btm0402":
 	              	// Usuários: Cadastro de servidores
-					session['opcao'] = 'op37';
-					session['opcao-navbar'] = 'usuarios';
-					session['alerta'] = 0;
-	              	execRequestAjax('op37', '', 'conteudo');
-					setTituloNavbar(session['opcao-navbar']);
+					session.opcao = 'op37';
+					session.opcaoNavbar = 'usuarios';
+	              	execRequestAjx(urlMenuOption('op37'), '', 'conteudo', 'returnHtml', insertHTMLToPanel,'','aguarde-ico');
+					setTituloNavbar(session.opcaoNavbar);
 	              	break;
 
 	              case "#btm0501":
 	              	// Ferramentas: Atualizar base de dados
-					session['opcao'] = 'op13';
-					session['opcao-navbar'] = 'ferramentas';
-					session['alerta'] = 0;
-	              	execRequestAjax('op13', '', 'conteudo');
-					setTituloNavbar(session['opcao-navbar']);
+					session.opcao = 'op13';
+					session.opcaoNavbar = 'ferramentas';
+	              	execRequestAjx(urlMenuOption('op13'), '', 'conteudo', 'returnHtml', insertHTMLToPanel,'','aguarde-ico');
+					setTituloNavbar(session.opcaoNavbar);
 	              	break;
 
 	              case "#btm0502":
 	              	// Ferramentas: Permissões de acesso
-					session['opcao'] = 'op14';
-					session['opcao-navbar'] = 'ferramentas';
-					session['alerta'] = 0;
-	              	execRequestAjax('op14', '', 'conteudo');
-					setTituloNavbar(session['opcao-navbar']);
+					session.opcao = 'op14';
+					session.opcaoNavbar = 'ferramentas';
+	              	execRequestAjx(urlMenuOption('op14'), '', 'conteudo', 'returnHtml', insertHTMLToPanel,'','aguarde-ico');
+					setTituloNavbar(session.opcaoNavbar);
 	              	break;
 
 	              case "#btm0503":
 	              	// Ferramentas: Regiões
-					session['opcao'] = 'op18';
-					session['opcao-navbar'] = 'ferramentas';
-					session['alerta'] = 0;
-	              	execRequestAjax('op18', '', 'conteudo');
-					setTituloNavbar(session['opcao-navbar']);
+					session.opcao = 'op18';
+					session.opcaoNavbar = 'ferramentas';
+	              	execRequestAjx(urlMenuOption('op18'), '', 'conteudo', 'returnHtml', insertHTMLToPanel,'','aguarde-ico');
+					setTituloNavbar(session.opcaoNavbar);
 	              	break;
 
 	              case "#btm0504":
 	              	// Ferramentas: Unidades
-					session['opcao'] = 'op19';
-					session['opcao-navbar'] = 'ferramentas';
-					session['alerta'] = 0;
-	              	execRequestAjax('op19', '', 'conteudo');
-					setTituloNavbar(session['opcao-navbar']);
+					session.opcao = 'op19';
+					session.opcaoNavbar = 'ferramentas';
+	              	execRequestAjx(urlMenuOption('op19'), '', 'conteudo', 'returnHtml', insertHTMLToPanel,'','aguarde-ico');
+					setTituloNavbar(session.opcaoNavbar);
 	              	break;
 
 	              case "#btm0505":
 	              	// Ferramentas: Tipos de ação
-					session['opcao'] = 'op20';
-					session['opcao-navbar'] = 'ferramentas';
-					session['alerta'] = 0;
-	              	execRequestAjax('op20', '', 'conteudo');
-					setTituloNavbar(session['opcao-navbar']);
+					session.opcao = 'op20';
+					session.opcaoNavbar = 'ferramentas';
+	              	execRequestAjx(urlMenuOption('op20'), '', 'conteudo', 'returnHtml', insertHTMLToPanel,'','aguarde-ico');
+					setTituloNavbar(session.opcaoNavbar);
 	              	break;
 
 	              case "#btm0506":
 	              	// Ferramentas: Tipos de Locais
-					session['opcao'] = 'op21';
-					session['opcao-navbar'] = 'ferramentas';
-					session['alerta'] = 0;
-	              	execRequestAjax('op21', '', 'conteudo');
-					setTituloNavbar(session['opcao-navbar']);
+					session.opcao = 'op21';
+					session.opcaoNavbar = 'ferramentas';
+	              	execRequestAjx(urlMenuOption('op21'), '', 'conteudo', 'returnHtml', insertHTMLToPanel,'','aguarde-ico');
+					setTituloNavbar(session.opcaoNavbar);
 	              	break;
 
 	              case "#btm0507":
 	              	// Ferramentas: Cadastro de locais
-					session['opcao'] = 'op22';
-					session['opcao-navbar'] = 'ferramentas';
-					session['alerta'] = 0;
-	              	execRequestAjax('op22', '', 'conteudo');
-					setTituloNavbar(session['opcao-navbar']);
+					session.opcao = 'op22';
+					session.opcaoNavbar = 'ferramentas';
+	              	execRequestAjx(urlMenuOption('op22'), '', 'conteudo', 'returnHtml', insertHTMLToPanel,'','aguarde-ico');
+					setTituloNavbar(session.opcaoNavbar);
 	              	break;
 
 	              default:
 	                console.log(eventsElements);
 
-	            }
-
+				}
+				
 	        })
 
     	}
@@ -299,60 +272,20 @@ function initEventsPainel() {
 /* Funções de "Callback"                  */
 /*========================================*/
 
-function opcaoSelecionada(idElement){
-	return document.getElementById(idElement).value;
-}
-
-// Executa as funções de requisição via Ajax
-// typeAction define que tipo de ação tomar sendo:
-// 'returnHtml'  : retorna um Html que será inserido em algum local definido em 'idElement';
-// 'returnValue' : retorna um valor ou conjnto de dados a ser trabalhado em um módulo.
-// execFunction define qual função executar após o retorno Ajax.
-function execRequestAjax(opcao, params, idElement, typeAction = 'returnHtml', execFunction = carregaContainerAcoes, paramFunction = '', idLoading = ''){
-	
-	var url = urlOpcaoMenu(opcao) + '?' + params;
-
-	$(document).ready(function(){
-
-		$.ajax({
-
-			url: url,
-
-			success: function(data){
-				if (typeAction == 'returnHtml') {
-					if (paramFunction == '') {
-						execFunction(idElement, data);
-					}else{
-						execFunction(idElement, data, paramFunction);
-					}
-				}else{
-					execFunction(data);
-				}
-			},
-
-			beforeSend: function(){
-				if (idLoading != '') {
-					showItem(idLoading);
-				}
-			},
-
-			complete: function(){
-				if (idLoading != '') {
-					hideItem(idLoading);
-				}
-				reloadBasicFunctions();
-			}
-
-		});
-
-	});
-
+// Necessário ser executada a cada requisição Ajax
+function reloadBasicFunctions() {
+	// Aciona o tooltip bootstrap para elementos que o contém
+	$('[data-toggle="tooltip"]').tooltip();
 };
 
-// Chamada pela função "execRequestAjax" quando o parâmetro "typeAction" está setado com 
-// o valor "returnHtml", insere o retorno no container informado no parâmetro "idElement"
-function carregaContainerAcoes(idContainer, htmlAcoes){
-	document.getElementById(idContainer).innerHTML = htmlAcoes;
+// Função chamada para inserir o código HTML no container (ao invés de chamar a função padrão, foi criada para chamar a função "reloadBasicFunctions" necesária a cada chamada de opção do menu principal)
+function insertHTMLToPanel(idContainer, htmlCode){
+	document.getElementById(idContainer).innerHTML = htmlCode;
+	reloadBasicFunctions();
+}
+
+function opcaoSelecionada(idElement){
+	return document.getElementById(idElement).value;
 }
 
 // Define o título no "Navbar" de acordo com a chamada
@@ -389,7 +322,7 @@ function setTituloNavbar(opcaoNavbar){
 }
 
 // Define a URL de chamada pela função "execRequestAjax" definido no parâmetro "opcao"
-function urlOpcaoMenu(opcao){
+function urlMenuOption(opcao){
 	switch (opcao) {
 		case 'op0':
 			// Lista números do evento resumidamente
@@ -410,13 +343,9 @@ function urlOpcaoMenu(opcao){
 			break;
 		
 		case 'op4':
-			// Carrega uma página em branco
-			return 'resource/res_pc_pagina_em_branco.php';
 			break;
 		
 		case 'op5':
-			// Lista de frequência (em .PDF)
-			return '****app/view/reports/rep_lista_inscritos.php';
 			break;
 	  
 		case 'op6':
@@ -430,13 +359,9 @@ function urlOpcaoMenu(opcao){
 			break;
 		
 		case 'op8':
-			// Retorna uma lista de ações em "<option>"" para um "<select>" de ações
-			return 'resource/res_pc_items_select_acoes.php';
 			break;
 		
 		case 'op9':
-			// Retorna uma lista de locais em "<option>"" para um "<select>" de locais
-			return 'resource/res_pc_items_select_locais.php';
 			break;
 	  
 		case 'op10':
@@ -525,7 +450,7 @@ function urlOpcaoMenu(opcao){
 			break;
 
 		case 'op27':
-			// Retorna a lista para confirmar frequência
+			// Opções para listagem de inscritos em uma formação
 			return 'resource/res_pc_relatorios_listafrequencia_acoes.php';
 			break;
 		
@@ -599,35 +524,15 @@ function urlOpcaoMenu(opcao){
 			return 'resource/res_pc_ferramentas_cadlocais_lista.php';
 			break;
 		
+		case 'op41':
+			// Executa o download da lista de frequência ativa
+			return 'report/rep_export_lista_inscritos.php';
+			break;
+		
 		default:
 			return 'resource/res_pc_pagina_em_branco.php';
 			break;
 	}
-}
-
-
-
-
-/*========================================*/
-/* Outras funções                         */
-/*========================================*/
-
-function showMsgAlerta(opAlerta='0') {
-  switch (opAlerta) {
-    case 0:
-      break;
-
-    case 1:
-      break;
-
-    case 6:
-      alert('Todas as frequências informadas foram confirmadas!');
-      session['alerta'] = 0;
-      break;
-
-    default:
-      break;
-  }
 }
 
 
@@ -875,7 +780,7 @@ function selecionaTipoLocal(){
 		blockItem('idlocalrealizacao');
 		document.querySelector('#idlocalrealizacao').innerHTML = '';
 	}else{
-		execRequestAjax('op32', 'idregiao='+document.getElementById('idregiaolocal').value+'&tipolocal='+document.getElementById('tipolocalrealizacao').value+'&acao=lista-locais-cadastrados', 'idlocalrealizacao');
+		execRequestAjx('resource/res_pc_eventos_crud_acao.php', 'idregiao='+document.getElementById('idregiaolocal').value+'&tipolocal='+document.getElementById('tipolocalrealizacao').value+'&acao=lista-locais-cadastrados', 'idlocalrealizacao');
 		unblockItem('botao-add-local');
 		unblockItem('idlocalrealizacao');
 	}
@@ -887,7 +792,7 @@ function selecionaRegiao(elementRegiao){
 			document.querySelector('#ev-idorgao').innerHTML = '';
 			blockItem('ev-idorgao');
 		}else{
-			execRequestAjax('op32', 'idregiao='+elementRegiao.value+'&acao=lista-orgaos-cadastrados', 'ev-idorgao');
+			execRequestAjx('resource/res_pc_eventos_crud_acao.php', 'idregiao='+elementRegiao.value+'&acao=lista-orgaos-cadastrados', 'ev-idorgao');
 			unblockItem('ev-idorgao');
 		}
 	}else{
@@ -898,7 +803,7 @@ function selecionaRegiao(elementRegiao){
 			blockItem('tipolocalrealizacao');
 			blockItem('idlocalrealizacao');
 		}else{
-			execRequestAjax('op32', 'idregiao='+document.getElementById('idregiaolocal').value+'&acao=lista-tiposlocaisregiao', 'tipolocalrealizacao');
+			execRequestAjx('resource/res_pc_eventos_crud_acao.php', 'idregiao='+document.getElementById('idregiaolocal').value+'&acao=lista-tiposlocaisregiao', 'tipolocalrealizacao');
 			blockItem('botao-add-local');
 			unblockItem('tipolocalrealizacao');
 			blockItem('idlocalrealizacao');
@@ -1247,11 +1152,12 @@ function deleteAcao(item, deleteAll = false){
 
 
 
+
 /* res_pc_ferramentas_permissoes.php */
 function getPermissao(id){
 	clearPainelPermissao();
 	idpermissao = id.replace("btedit-","");
-	execRequestAjax('op16', 'idpermissao='+idpermissao+'&acao=edit', '', 'returnValue', setPermissao);
+	execRequestAjx(urlMenuOption('op16'), 'idpermissao='+idpermissao+'&acao=edit', '', 'returnValue', setPermissao);
 }
 
 function setPermissao(jsonData){
@@ -1285,14 +1191,14 @@ function deletePermissao(id){
 	ok = confirm("Atenção:\nAo excluir uma permissão, todos os usuários que a utilizam ficarão impossibilitados de acessar o sistema.\n\nDeseja continuar?")
 	if (ok) {
 		idpermissao = id.replace("btdelete-","");
-		execRequestAjax('op16', 'idpermissao='+idpermissao+'&acao=delete', '', 'returnValue', concluirDeletePermissao);
+		execRequestAjx(urlMenuOption('op16'), 'idpermissao='+idpermissao+'&acao=delete', '', 'returnValue', concluirDeletePermissao);
 	}else{
 		alert('Ação cancelada!');
 	}
 }
 
 function concluirDeletePermissao(jsonData){
-   	execRequestAjax('op14', '', 'conteudo');
+   	execRequestAjx(urlMenuOption('op14'), '', 'conteudo');
 	retorno = JSON.parse(jsonData);
 	if (retorno["COD_ERRO"] == 200) {
 		alert('Opção removida! Todos os usuários que tinham a permissão ficarão bloqueados ao acessar o sistema!');
@@ -1337,11 +1243,11 @@ function savePermissao(){
 		inicio = false;
 	});
 	itensJson += '}';
-	execRequestAjax('op16', 'idpermissao='+idpermissao+'&acao=save&permissao='+permissao+'&itens='+itensJson, '', 'returnValue', concluirSavePermissao);
+	execRequestAjx(urlMenuOption('op16'), 'idpermissao='+idpermissao+'&acao=save&permissao='+permissao+'&itens='+itensJson, '', 'returnValue', concluirSavePermissao);
 }
 
 function concluirSavePermissao(jsonData){
-   	execRequestAjax('op14', '', 'conteudo');
+   	execRequestAjx(urlMenuOption('op14'), '', 'conteudo');
 	retorno = JSON.parse(jsonData);
 	if (retorno["COD_ERRO"] == 200) {
 		alert('Opção alterada com sucesso!');
@@ -1367,14 +1273,14 @@ function addPermissao(){
 			inicio = false;
 		});
 		itensJson += '}';
-		execRequestAjax('op16', 'idpermissao=0&acao=add&permissao='+permissao+'&itens='+itensJson, '', 'returnValue', concluirAddPermissao);
+		execRequestAjx(urlMenuOption('op16'), 'idpermissao=0&acao=add&permissao='+permissao+'&itens='+itensJson, '', 'returnValue', concluirAddPermissao);
 	}else{
 		alert('Para concluir é necessário informar um nome para a permissão.');
 	}
 }
 
 function concluirAddPermissao(jsonData){
-   	execRequestAjax('op14', '', 'conteudo');
+   	execRequestAjx(urlMenuOption('op14'), '', 'conteudo');
 	retorno = JSON.parse(jsonData);
 	if (retorno["COD_ERRO"] == 200) {
 		alert('Opção adicionada com sucesso!');
@@ -1441,15 +1347,15 @@ function cbListaInfoDetalhado(chamada='informacoes-detalhado'){
     switch (chamada) {
 
       case "informacoes-detalhado":
-		execRequestAjax('op36','idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao').value, 'container-requisicao', 'returnHtml', carregaContainerAcoes, '', 'loading-local');
+		execRequestAjx(urlMenuOption('op36'),'idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao').value, 'container-requisicao', 'returnHtml', carregaContainerAcoes, '', 'loading-local');
 		break;
 
       case "informacoes-simplificado":
-		execRequestAjax('op30','idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao').value, 'container-requisicao', 'returnHtml', carregaContainerAcoes, '', 'loading-local');
+		execRequestAjx(urlMenuOption('op30'),'idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao').value, 'container-requisicao', 'returnHtml', carregaContainerAcoes, '', 'loading-local');
 		break;
 
       case "informacoes-numeros":
-		execRequestAjax('op29','idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao').value, 'container-requisicao', 'returnHtml', carregaContainerAcoes, '', 'loading-local');
+		execRequestAjx(urlMenuOption('op29'),'idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao').value, 'container-requisicao', 'returnHtml', carregaContainerAcoes, '', 'loading-local');
 		break;
 
       default:
@@ -1470,8 +1376,8 @@ function cbLocalizaEventosInfoAno(chamada='eventos-inscricaointerna'){
     switch (chamada) {
 
       case "eventos-inscricaointerna":
-		execRequestAjax('op34','acaoInscricaoInterna=lista-eventos-ano&ano='+document.getElementById('ano').value,'idevento');
-		execRequestAjax('op4','','container-requisicao');
+		execRequestAjx(urlMenuOption('op34'),'acaoInscricaoInterna=lista-eventos-ano&ano='+document.getElementById('ano').value,'idevento');
+		document.getElementById('container-requisicao').innerHTML = '';
 		document.getElementById('idevento').innerHTML='';
 		document.getElementById('idregiao').innerHTML='';
 		document.getElementById('idlocal').innerHTML='';
@@ -1480,8 +1386,8 @@ function cbLocalizaEventosInfoAno(chamada='eventos-inscricaointerna'){
 
       case "informacoes-detalhado":
 		if (document.getElementById('idregiao').value > 0) {
-			execRequestAjax('op39','acaoExec=lista-eventos-ano&ano='+document.getElementById('ano').value+'&idregiao='+document.getElementById('idregiao').value,'idevento');
-			execRequestAjax('op4','','container-requisicao');
+			execRequestAjx(urlMenuOption('op39'),'acaoExec=lista-eventos-ano&ano='+document.getElementById('ano').value+'&idregiao='+document.getElementById('idregiao').value,'idevento');
+			document.getElementById('container-requisicao').innerHTML = '';
 		}else{
 			document.getElementById('idevento').innerHTML='';
 		}
@@ -1489,8 +1395,8 @@ function cbLocalizaEventosInfoAno(chamada='eventos-inscricaointerna'){
 
       case "informacoes-simplificado":
 		if (document.getElementById('idregiao').value > 0) {
-			execRequestAjax('op39','acaoExec=lista-eventos-ano&ano='+document.getElementById('ano').value+'&idregiao='+document.getElementById('idregiao').value,'idevento');
-			execRequestAjax('op4','','container-requisicao');
+			execRequestAjx(urlMenuOption('op39'),'acaoExec=lista-eventos-ano&ano='+document.getElementById('ano').value+'&idregiao='+document.getElementById('idregiao').value,'idevento');
+			document.getElementById('container-requisicao').innerHTML = '';
 		}else{
 			document.getElementById('idevento').innerHTML='';
 		}
@@ -1498,8 +1404,8 @@ function cbLocalizaEventosInfoAno(chamada='eventos-inscricaointerna'){
 
       case "informacoes-numeros":
 		if (document.getElementById('idregiao').value > 0) {
-			execRequestAjax('op39','acaoExec=lista-eventos-ano&ano='+document.getElementById('ano').value+'&idregiao='+document.getElementById('idregiao').value,'idevento');
-			execRequestAjax('op4','','container-requisicao');
+			execRequestAjx(urlMenuOption('op39'),'acaoExec=lista-eventos-ano&ano='+document.getElementById('ano').value+'&idregiao='+document.getElementById('idregiao').value,'idevento');
+			document.getElementById('container-requisicao').innerHTML = '';
 		}else{
 			document.getElementById('idevento').innerHTML='';
 		}
@@ -1517,8 +1423,8 @@ function cbLocalizaRegioesInfoEvento(chamada='eventos-inscricaointerna'){
 	switch (chamada){
 
 		case "eventos-inscricaointerna":
-			execRequestAjax('op34','acaoInscricaoInterna=lista-regioes-evento&idevento='+document.getElementById('idevento').value,'idregiao');
-			execRequestAjax('op4','','container-requisicao');
+			execRequestAjx(urlMenuOption('op34'),'acaoInscricaoInterna=lista-regioes-evento&idevento='+document.getElementById('idevento').value,'idregiao');
+			document.getElementById('container-requisicao').innerHTML = '';
 			document.getElementById('idregiao').innerHTML='';
 			document.getElementById('idlocal').innerHTML='';
 			document.getElementById('idacao').innerHTML='';
@@ -1536,15 +1442,15 @@ function cbLocalizaRegioesInfoEventoRestrito(chamada='eventos-inscricaointerna')
 	switch (chamada) {
 
 		case "eventos-inscricaointerna":
-			execRequestAjax('op34','acaoInscricaoInterna=lista-regioes-evento-restrito&idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao-restrito').value,'idregiao');
-			execRequestAjax('op34','acaoInscricaoInterna=lista-locais-evento-restrito&idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao-restrito').value+'&idorgao='+document.getElementById('idorgao-restrito').value, 'idlocal', 'returnHtml', cbLocalizaAcoesInfoLocalRestrito);
-			execRequestAjax('op4','','container-requisicao');
+			execRequestAjx(urlMenuOption('op34'),'acaoInscricaoInterna=lista-regioes-evento-restrito&idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao-restrito').value,'idregiao');
+			execRequestAjx(urlMenuOption('op34'),'acaoInscricaoInterna=lista-locais-evento-restrito&idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao-restrito').value+'&idorgao='+document.getElementById('idorgao-restrito').value, 'idlocal', 'returnHtml', cbLocalizaAcoesInfoLocalRestrito);
+			document.getElementById('container-requisicao').innerHTML = '';
 			break;
 
 		case "eventos-confirmarfrequencia":
-			execRequestAjax('op34','acaoInscricaoInterna=lista-regioes-evento-restrito&idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao-restrito').value,'idregiao');
-			execRequestAjax('op34','acaoInscricaoInterna=lista-locais-evento-restrito&idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao-restrito').value+'&idorgao='+document.getElementById('idorgao-restrito').value, 'idlocal', 'returnHtml', cbLocalizaAcoesInfoLocalRestrito, 'eventos-confirmarfrequencia');
-			execRequestAjax('op4','','container-requisicao');
+			execRequestAjx(urlMenuOption('op34'),'acaoInscricaoInterna=lista-regioes-evento-restrito&idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao-restrito').value,'idregiao');
+			execRequestAjx(urlMenuOption('op34'),'acaoInscricaoInterna=lista-locais-evento-restrito&idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao-restrito').value+'&idorgao='+document.getElementById('idorgao-restrito').value, 'idlocal', 'returnHtml', cbLocalizaAcoesInfoLocalRestrito, 'eventos-confirmarfrequencia');
+			document.getElementById('container-requisicao').innerHTML = '';
 			break;
 
 	}
@@ -1556,9 +1462,9 @@ function cbLocalizaRegioesInfoEventoRestritoRegiao(chamada='eventos-inscricaoint
 	switch (chamada) {
 
 		case "eventos-inscricaointerna":
-			execRequestAjax('op34','acaoInscricaoInterna=lista-regioes-evento-restrito&idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao-restrito').value,'idregiao');
-			execRequestAjax('op34','acaoInscricaoInterna=lista-locais-evento&idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao-restrito').value+'&idorgao='+document.getElementById('idorgao-restrito').value, 'idlocal', 'returnHtml', cbLocalizaAcoesInfoLocalRestrito);
-			execRequestAjax('op4','','container-requisicao');
+			execRequestAjx(urlMenuOption('op34'),'acaoInscricaoInterna=lista-regioes-evento-restrito&idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao-restrito').value,'idregiao');
+			execRequestAjx(urlMenuOption('op34'),'acaoInscricaoInterna=lista-locais-evento&idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao-restrito').value+'&idorgao='+document.getElementById('idorgao-restrito').value, 'idlocal', 'returnHtml', cbLocalizaAcoesInfoLocalRestrito);
+			document.getElementById('container-requisicao').innerHTML = '';
 			break;
 
 		default:
@@ -1574,14 +1480,14 @@ function cbLocalizaAcoesInfoLocalRestrito(idlocal='',value='',chamada='eventos-i
 
 		case "eventos-inscricaointerna":
 			document.getElementById(idlocal).innerHTML=value;
-			execRequestAjax('op34','acaoInscricaoInterna=lista-acoes-evento&idevento='+document.getElementById('idevento').value+'&idlocal='+document.getElementById('idlocal').value,'idacao');
-			execRequestAjax('op4','','container-requisicao');
+			execRequestAjx(urlMenuOption('op34'),'acaoInscricaoInterna=lista-acoes-evento&idevento='+document.getElementById('idevento').value+'&idlocal='+document.getElementById('idlocal').value,'idacao');
+			document.getElementById('container-requisicao').innerHTML = '';
 			break;
 
 		case "eventos-confirmarfrequencia":
 			document.getElementById(idlocal).innerHTML=value;
-			execRequestAjax('op34','acaoInscricaoInterna=lista-acoes-confirmarfrequencia&idevento='+document.getElementById('idevento').value+'&idlocal='+document.getElementById('idlocal').value,'idacao');
-			execRequestAjax('op4','','container-requisicao');
+			execRequestAjx(urlMenuOption('op34'),'acaoInscricaoInterna=lista-acoes-confirmarfrequencia&idevento='+document.getElementById('idevento').value+'&idlocal='+document.getElementById('idlocal').value,'idacao');
+			document.getElementById('container-requisicao').innerHTML = '';
 			break;
 	
 	}
@@ -1593,14 +1499,14 @@ function cbLocalizaLocaisInfoRegiao(chamada='eventos-inscricaointerna'){
 	switch (chamada) {
 
 		case "eventos-inscricaointerna":
-			execRequestAjax('op34','acaoInscricaoInterna=lista-locais-evento&idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao').value, 'idlocal');
-			execRequestAjax('op4','','container-requisicao');
+			execRequestAjx(urlMenuOption('op34'),'acaoInscricaoInterna=lista-locais-evento&idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao').value, 'idlocal');
+			document.getElementById('container-requisicao').innerHTML = '';
 			document.getElementById('idlocal').innerHTML='';
 			document.getElementById('idacao').innerHTML='';
 			break;
 
 		case "informacoes-detalhado":
-			execRequestAjax('op36','idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao').value, 'container-requisicao');
+			execRequestAjx(urlMenuOption('op36'),'idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao').value, 'container-requisicao');
 			break;
 
 		default:
@@ -1615,14 +1521,14 @@ function cbLocalizaAcoesInfoLocal(chamada='eventos-inscricaointerna'){
 	switch (chamada) {
 
 		case "eventos-inscricaointerna":
-			execRequestAjax('op34','acaoInscricaoInterna=lista-acoes-evento&idevento='+document.getElementById('idevento').value+'&idlocal='+document.getElementById('idlocal').value,'idacao');
-			execRequestAjax('op4','','container-requisicao');
+			execRequestAjx(urlMenuOption('op34'),'acaoInscricaoInterna=lista-acoes-evento&idevento='+document.getElementById('idevento').value+'&idlocal='+document.getElementById('idlocal').value,'idacao');
+			document.getElementById('container-requisicao').innerHTML = '';
 			document.getElementById('idacao').innerHTML='';
 			break;
 
 		case "eventos-confirmarfrequencia":
-			execRequestAjax('op34','acaoInscricaoInterna=lista-acoes-confirmarfrequencia&idevento='+document.getElementById('idevento').value+'&idlocal='+document.getElementById('idlocal').value,'idacao');
-			execRequestAjax('op4','','container-requisicao');
+			execRequestAjx(urlMenuOption('op34'),'acaoInscricaoInterna=lista-acoes-confirmarfrequencia&idevento='+document.getElementById('idevento').value+'&idlocal='+document.getElementById('idlocal').value,'idacao');
+			document.getElementById('container-requisicao').innerHTML = '';
 			document.getElementById('idacao').innerHTML='';
 			break;
 	
@@ -1631,20 +1537,20 @@ function cbLocalizaAcoesInfoLocal(chamada='eventos-inscricaointerna'){
 }
 
 function cbIniciaInscricaoInfoAcao(){
-	execRequestAjax('op35','idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao').value+'&idlocal='+document.getElementById('idlocal').value+'&idacao='+document.getElementById('idacao').value+'&temaacao='+document.querySelector('#idacao').options[document.querySelector('#idacao').selectedIndex].text, 'container-requisicao');
+	execRequestAjx(urlMenuOption('op35'),'idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao').value+'&idlocal='+document.getElementById('idlocal').value+'&idacao='+document.getElementById('idacao').value+'&temaacao='+document.querySelector('#idacao').options[document.querySelector('#idacao').selectedIndex].text, 'container-requisicao');
 }
 
 
 
 /* res_pc_eventos_inscricaointerna_inscricao.php */
 function deleteInscrito(idInscrito,idEvento,idLocal,idAcao){
-	execRequestAjax('op34','acaoInscricaoInterna=delete-inscrito&idevento='+idEvento+'&idlocal='+idLocal+'&idacao='+idAcao+'&idinscrito='+idInscrito,'corpo-inscritos-acao');
+	execRequestAjx(urlMenuOption('op34'),'acaoInscricaoInterna=delete-inscrito&idevento='+idEvento+'&idlocal='+idLocal+'&idacao='+idAcao+'&idinscrito='+idInscrito,'corpo-inscritos-acao');
 	document.querySelector('#insc-add-matricula').value = '';
 	document.querySelector('#insc-add-matricula').focus();
 }
 
 function cancelarInscricoesDaAcao(){
-	execRequestAjax('op34','acaoInscricaoInterna=delete-todos-inscritos&idevento='+document.querySelector('#idevento').value+'&idregiao='+document.querySelector('#idregiao').value+'&idlocal='+document.querySelector('#idlocal').value+'&idacao='+document.querySelector('#idacao').value,'corpo-inscritos-acao');
+	execRequestAjx(urlMenuOption('op34'),'acaoInscricaoInterna=delete-todos-inscritos&idevento='+document.querySelector('#idevento').value+'&idregiao='+document.querySelector('#idregiao').value+'&idlocal='+document.querySelector('#idlocal').value+'&idacao='+document.querySelector('#idacao').value,'corpo-inscritos-acao');
 	document.querySelector('#insc-add-matricula').value = '';
 	document.querySelector('#insc-add-matricula').focus();
 }
@@ -1665,7 +1571,7 @@ function atualizaDadosInscritos(){
 	});
 	items += ']';
 
-	execRequestAjax('op34','acaoInscricaoInterna=atualiza-dados-inscritos&idevento='+document.querySelector('#idevento').value+'&idlocal='+document.querySelector('#idlocal').value+'&idacao='+document.querySelector('#idacao').value+'&items='+items,'corpo-inscritos-acao');
+	execRequestAjx(urlMenuOption('op34'),'acaoInscricaoInterna=atualiza-dados-inscritos&idevento='+document.querySelector('#idevento').value+'&idlocal='+document.querySelector('#idlocal').value+'&idacao='+document.querySelector('#idacao').value+'&items='+items,'corpo-inscritos-acao');
 	document.querySelector('#insc-add-matricula').value = '';
 	document.querySelector('#insc-add-matricula').focus();
 	alert('Mudanças confirmadas!');
@@ -1732,7 +1638,7 @@ function execInscricao(){
 		alert('Informe a matrícula do servidor!');
 		document.querySelector('#insc-add-matricula').focus();
 	}else{
-		execRequestAjax('op34','acaoInscricaoInterna=inscricao-servidor'+getDadosInscreverServidor(),'corpo-inscritos-acao','',concluirInscricaoServidor);
+		execRequestAjx(urlMenuOption('op34'),'acaoInscricaoInterna=inscricao-servidor'+getDadosInscreverServidor(),'corpo-inscritos-acao','',concluirInscricaoServidor);
 	}
 }
 
@@ -1787,7 +1693,7 @@ function concluirInscricaoServidor(ret){
 // Seleciona os órgãos para lotação de servidores de acordo com a região
 // "numCadastro pode ser 1 ou 2 (direciona para o cadastro da matrícula que pode ser 1 ou 2)"
 function cbLocalizaListaOrgaosInfoRegiao(numCadastro){
-	execRequestAjax('op38','acaoCadServidores=lista-orgaos&idregiao='+document.getElementById('idregiao'+numCadastro).value,'idorgao'+numCadastro);
+	execRequestAjx(urlMenuOption('op38'),'acaoCadServidores=lista-orgaos&idregiao='+document.getElementById('idregiao'+numCadastro).value,'idorgao'+numCadastro);
 }
 
 function validaCadUsuario(){
@@ -1858,7 +1764,7 @@ function localizaServidor(){
 	}else if ((nome.length < 3)&&(nome.length > 0)) {
 		alert('Informe pelo menos 3 caracteres do nome do servidor para continuar!');
 	}else{
-		execRequestAjax('op38','acaoCadServidores=busca-servidor&matricula='+matricula+'&cpf='+cpf+'&nomeservidor='+nome, 'corpo-tabela-servidores');
+		execRequestAjx(urlMenuOption('op38'),'acaoCadServidores=busca-servidor&matricula='+matricula+'&cpf='+cpf+'&nomeservidor='+nome, 'corpo-tabela-servidores');
 	}
 }
 
@@ -1878,50 +1784,62 @@ function limpaDemaisCampos(campoInformado){
 
 /* res_pc_ferramentas_unidades.php */
 function execListaUnidades(){
-	execRequestAjax('op28', 'idregiao='+document.getElementById('idregiao').value+'&tipo='+document.getElementById('tipo-unidade').value+'&ordem='+document.getElementById('ordem').value, 'container-requisicao', 'returnHtml', carregaContainerAcoes, '', 'loading-local');
+	execRequestAjx(urlMenuOption('op28'), 'idregiao='+document.getElementById('idregiao').value+'&tipo='+document.getElementById('tipo-unidade').value+'&ordem='+document.getElementById('ordem').value, 'container-requisicao', 'returnHtml', carregaContainerAcoes, '', 'loading-local');
 }
 
 
 
 /* res_pc_ferramentas_cadlocais.php */
 function execListaCadLocais(){
-	execRequestAjax('op40', 'idregiao='+document.getElementById('idregiao').value+'&tipo='+document.getElementById('tipo-unidade').value+'&ordem='+document.getElementById('ordem').value, 'container-requisicao');
+	execRequestAjx(urlMenuOption('op40'), 'idregiao='+document.getElementById('idregiao').value+'&tipo='+document.getElementById('tipo-unidade').value+'&ordem='+document.getElementById('ordem').value, 'container-requisicao');
 }
 
 
 
 /* res_pc_relatorios_listafrequencia */
 function nextPageListaFrequencia(){
-	let paginaAtual = parseInt(document.getElementById('select-page-table').value);
-	let totalDePaginas = parseInt(document.getElementById('total-paginas').innerHTML);
-	if (paginaAtual < totalDePaginas) {
-		paginaAtual++;
-		refreshTableListaFrequencia(paginaAtual);
+	if (listaAtiva()) {
+		let paginaAtual = 1;
+		let totalDePaginas = 1;
+		if ((document.getElementById('select-page-table'))&&(document.getElementById('total-paginas'))) {
+			paginaAtual = parseInt(document.getElementById('select-page-table').value,10);
+			totalDePaginas = parseInt(document.getElementById('total-paginas').innerHTML);
+		}
+		if (paginaAtual < totalDePaginas) {
+			paginaAtual++;
+			refreshTableListaFrequencia(paginaAtual);
+		}
 	}
 }
 
 function priorPageListaFrequencia(){
-	let paginaAtual = parseInt(document.getElementById('select-page-table').value);
-	if (paginaAtual > 1) {
-		paginaAtual--;
-		refreshTableListaFrequencia(paginaAtual);
+	if (listaAtiva()) {
+		let paginaAtual = 1;
+		if (document.getElementById('select-page-table')) {
+			paginaAtual = parseInt(document.getElementById('select-page-table').value,10);
+		}
+		if (paginaAtual > 1) {
+			paginaAtual--;
+			refreshTableListaFrequencia(paginaAtual);
+		}
 	}
 }
 
 function gotoPageListaFrequencia(){
-	let paginaAtual = document.getElementById('select-page-table').value;
-	refreshTableListaFrequencia(paginaAtual);
+	if (listaAtiva()) {
+		let paginaAtual = 1;
+		if (document.getElementById('select-page-table').value) {
+			paginaAtual = parseInt(document.getElementById('select-page-table').value,10);
+		}
+		refreshTableListaFrequencia(paginaAtual);
+	}
 }
 
 function refreshTableListaFrequencia(pagina){
-	var	filtroPresenca = '';
-	if (document.getElementById('filtro-presenca-todos').checked) {
-		filtroPresenca = '';
-	}else if (document.getElementById('filtro-presenca-sim').checked) {
-		filtroPresenca = 'S';
-	}else if (document.getElementById('filtro-presenca-nao').checked) {
-		filtroPresenca = 'N';
-	}
+	let paginaAtual = parseInt(pagina,10);
+	if (isNaN(paginaAtual)) {
+		paginaAtual = 1;
+	};
 
 	var element = document.getElementById('ordenar');
 	if (document.getElementById('ordem-crescente').checked) {
@@ -1940,78 +1858,187 @@ function refreshTableListaFrequencia(pagina){
 	paramsForTable += '&idregiao='+document.getElementById('idregiao').value;
 	paramsForTable += '&idregiaofiltro='+document.getElementById('idregiaofiltro').value;
 	paramsForTable += '&ordenar='+document.getElementById('ordenar').value;
-	paramsForTable += '&filtropresenca='+filtroPresenca;
-	paramsForTable += '&numpagina='+pagina;
+	paramsForTable += '&filtropresenca='+filtroPresenca();
+	paramsForTable += '&numpagina='+paginaAtual;
+	paramsForTable += '&colunas='+getColunasListagem();
 	paramsForTable += '&acao=lista-inscritos';
-	execRequestAjx('resource/res_pc_relatorios_listafrequencia_acoes.php', paramsForTable, 'container-requisicao');
+	execRequestAjx(urlMenuOption('op27'), paramsForTable, 'container-requisicao', 'returnHtml', insertHTMLContainer, '', 'aguarde-ico');
+
+	let paramsForInfo = 'idevento='+document.getElementById('idevento').value;
+	paramsForInfo += '&acao=info-evento';
+	execRequestAjx(urlMenuOption('op27'), paramsForInfo, 'modal-body-modalInfoEventoListado', 'returnHtml', insertHTMLContainer, '', 'aguarde-ico');
 }
 
-function getListaInscritos(){
-	var	filtroPresenca = '';
+function filtroPresenca(){
 	if (document.getElementById('filtro-presenca-todos').checked) {
-		filtroPresenca = '';
+		return '';
 	}else if (document.getElementById('filtro-presenca-sim').checked) {
-		filtroPresenca = 'S';
+		return 'S';
 	}else if (document.getElementById('filtro-presenca-nao').checked) {
-		filtroPresenca = 'N';
+		return 'N';
 	}
-
-	var element = document.getElementById('ordenar');
-	if (document.getElementById('ordem-crescente').checked) {
-		element.options[0].value = 'NOME_SERVIDOR ASC';
-		element.options[1].value = 'MATRICULA ASC';
-		element.options[2].value = 'REGIAO_ID ASC, NOME_SERVIDOR';
-	}else if(document.getElementById('ordem-decrescente').checked){
-		element.options[0].value = 'NOME_SERVIDOR DESC';
-		element.options[1].value = 'MATRICULA DESC';
-		element.options[2].value = 'REGIAO_ID DESC, NOME_SERVIDOR';
-	}
-
-	execRequestAjax('op27', 'idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao').value+'&idlocal='+document.getElementById('idlocal').value+'&idacao='+document.getElementById('idacao').value+'&idregiaofiltro='+document.getElementById('idregiaofiltro').value+'&ordenar='+document.getElementById('ordenar').value+'&filtropresenca='+filtroPresenca+'&acao=lista-inscritos', 'container-requisicao');
 }
 
 function selectAnoLoadEventos(ano){
 	
 	// Localiza os eventos de acordo com o ano selecionado
 	let params = 'ano='+ano+'&acao=lista-eventos-ano';
-	execRequestAjx('resource/res_pc_relatorios_listafrequencia_acoes.php', params, 'idevento');
-
-	// Limpa o select de locais e ações do evento
-	document.getElementById('idlocal').innerHTML = '';
-	document.getElementById('idacao').innerHTML = '';
+	execRequestAjx(urlMenuOption('op27'), params, 'idevento');
 
 	// Limpa a área da tabela
-	execRequestAjax('op4', '', 'container-requisicao');
+	document.getElementById('idlocal').innerHTML = '';
+	document.getElementById('idacao').innerHTML = '';
+	document.getElementById('container-requisicao').innerHTML = '';
 
 }
 
 function selectEventoLoadLocais(){
 	
-	// Localiza os locais do evento de acordo com o ano e evento selecionados
-	execRequestAjax('op9', 'idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao').value, 'idlocal');
+	// Localiza as ações do evento de acordo com o ano, evento e local selecionados
+	let paramsForInfo = 'idevento='+document.getElementById('idevento').value+'&idregiao='+document.getElementById('idregiao').value+'&acao=seleciona-locais';
 
-	// Limpa o select de ações do evento
-	document.getElementById('idacao').innerHTML = '';
+	execRequestAjx(urlMenuOption('op27'), paramsForInfo, 'idlocal', 'returnHtml', insertHTMLContainer, '', 'aguarde-ico');
 
 	// Limpa a área da tabela
-	execRequestAjax('op4', '', 'container-requisicao');
+	document.getElementById('idacao').innerHTML = '';
+	document.getElementById('container-requisicao').innerHTML = '';
 
 }
 
 function selectLocalLoadAcoes(){
 	
 	// Localiza as ações do evento de acordo com o ano, evento e local selecionados
-	execRequestAjax('op8', 'idevento='+document.getElementById('idevento').value, 'idacao');
+	let paramsForInfo = 'idevento='+document.getElementById('idevento').value+'&idlocal='+document.getElementById('idlocal').value+'&acao=seleciona-acoes';
+
+	execRequestAjx(urlMenuOption('op27'), paramsForInfo, 'idacao', 'returnHtml', insertHTMLContainer, '', 'aguarde-ico');
 
 	// Limpa a área da tabela
-	execRequestAjax('op4', '', 'container-requisicao');
+	document.getElementById('container-requisicao').innerHTML = '';
 
 }
 
-function testeLista(){
-	if (document.getElementById('container-lista')) {
-		console.log('Lista Ativa!');
+function showInfoEventoListado() {
+
+	if (listaAtiva()) {
+		$('#modalInfoEventoListado').modal();
 	}else{
-		console.log('Não temos lista sendo exibida!');
+		document.getElementById('modal-body-modalInfoEventoListado').innerHTML = 'Não há evento listado para exibir informações.';
+		$('#modalInfoEventoListado').modal();
 	}
+
+}
+
+// Retorna uma lista de colunas a serem exibidas na listagem (separados por vírgula)
+// no servidor essa lista é convertida em um array pelo PHP.
+function getColunasListagem(){
+	let colunas = '';
+	let selecao = document.querySelectorAll('.seleciona-info-lista');
+	selecao.forEach((element)=>{
+		if (element.checked) {
+			colunas += element.value + ',';
+		}
+	});
+	var cols = colunas.substring(0,(colunas.length-1));
+	return cols;
+}
+
+// Retorna o formato escolhido para download da planilha
+function getFormatoListagem(){
+	let formato = 'xlsx';
+	let opcoes = document.querySelectorAll('.formato-download');
+	opcoes.forEach((opcao)=>{
+		if (opcao.checked) {
+			formato = opcao.value;
+		}
+	});
+	return formato;
+}
+
+// Verifica se tem evento ativo para abrir as opções de download da listagem ativa
+function opcoesDownloadPlanilha(){
+	if (listaAtiva()) {
+		$('#modalOpcoesDownloadPlanilha').modal();
+	}else{
+		document.getElementById('modal-body-modalAviso').innerHTML = 'Para executar essa função é necessário ter uma listagem ativa!';
+		$('#modalAviso').modal();
+	}
+}
+
+// Executa o processo de download da listagem ativa
+function execDownloadPlanilha(){
+	let params = 'idevento='+document.getElementById('idevento').value;
+	params += '&idlocal='+document.getElementById('idlocal').value;
+	params += '&idacao='+document.getElementById('idacao').value;
+	params += '&idregiao='+document.getElementById('idregiao').value;
+	params += '&idregiaofiltro='+document.getElementById('idregiaofiltro').value;
+	params += '&ordenar='+document.getElementById('ordenar').value;
+	params += '&filtropresenca='+filtroPresenca();
+	params += '&numpagina=1';
+	params += '&colunas='+getColunasListagem();
+	params += '&formato='+getFormatoListagem();
+
+	abreLinkNovaAba(urlMenuOption('op41')+'?'+params);
+}
+
+// Verifica se tem evento ativo para abrir as opções de impressão da listagem ativa
+function opcoesImpressaoLista(){
+	if (listaAtiva()) {
+		$('#modalOpcoesImpressaoLista').modal();
+	}else{
+		document.getElementById('modal-body-modalAviso').innerHTML = 'Para executar essa função é necessário ter uma listagem ativa!';
+		$('#modalAviso').modal();
+	}
+}
+
+// Executa o processo de impressão da listagem ativa
+function execImpressaoLista(){
+	let opcaoImp = document.querySelectorAll('.info-impressao-lista');
+	let op = 0;
+	opcaoImp.forEach((opcao)=>{
+		if (opcao.checked) {op = opcao.value}
+	});
+
+	let params = '?chamada='+op;
+	params += '&idevento='+document.getElementById('idevento').value;
+	params += '&idlocal='+document.getElementById('idlocal').value;
+	params += '&idacao='+document.getElementById('idacao').value;
+	params += '&idregiaofiltro='+document.getElementById('idregiaofiltro').value;
+	params += '&ordenar='+document.getElementById('ordenar').value;
+	params += '&filtropresenca='+filtroPresenca();
+
+	abreLinkNovaAba('impressao.php'+params);
+}
+
+// Verifica se tem listagem ativa 
+// (auxilia as funções disparadas por eventos que necessitam que uma lista esteja ativa)
+function listaAtiva(){
+	if (document.getElementById('container-lista') == null) {
+		return false;
+	}else{
+		return true;
+	}
+}
+
+
+// Função reservada apenas para testes
+function teste(){
+	document.getElementById('script-loading').innerHTML = `
+	function execImpressaoListaTeste(){
+		let opcaoImp = document.querySelectorAll('.info-impressao-lista');
+		let op = 0;
+		opcaoImp.forEach((opcao)=>{
+			if (opcao.checked) {op = opcao.value}
+		});
+	
+		let params = '?chamada='+op;
+		params += '&idevento='+document.getElementById('idevento').value;
+		params += '&idlocal='+document.getElementById('idlocal').value;
+		params += '&idacao='+document.getElementById('idacao').value;
+		params += '&idregiaofiltro='+document.getElementById('idregiaofiltro').value;
+		params += '&ordenar='+document.getElementById('ordenar').value;
+		params += '&filtropresenca='+filtroPresenca();
+	
+		abreLinkNovaAba('impressao.php'+params);
+	}
+			`;
 }
